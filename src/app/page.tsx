@@ -3,35 +3,35 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-8">
-      <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div className=" w-full grid grid-cols-1 lg:grid-cols-2 lg:min-h-dvh lg:h-fit gap-3 items-center p-3">
         {/* Left side content */}
-        <div className="space-y-8">
+        <div className="border rounded-lg border-primary/40 min-h-dvh h-fit md:min-h-0 md:h-full grid grid-rows-[1fr_auto] gap-3 p-3">
           {/* Main content card */}
-          <div className="bg-white rounded-3xl p-8 shadow-lg">
-            <div className="mb-4">
+          <div className="grid grid-rows-[auto_1fr] gap-3 border rounded-lg border-primary/40">
+            <div className="p-3 flex justify-center">
               <Image
-                src="/mooz-logo.png"
+                src="/mooz-logo.jpg"
                 alt="Mooz Logo"
-                width={60}
-                height={60}
+                width={80}
+                height={80}
                 className="rounded-full bg-yellow-300"
               />
-            </div>
-            <h1 className="text-6xl font-bold mb-6 italic">HELLO!</h1>
-            <p className="text-xl">
-              I&apos;m Fawwaz, and I build things for the web.
-            </p>
-            <p className="text-xl mt-4">
-              Through Mooz, I help people turn their exciting ideas into real projects.
-            </p>
+              </div>
+              <div className="grid items-center">
+                <div className="">
+                  <h1 className="text-[30vw] lg:text-[12vw] lg:leading-[0.8em] lg:mb-24 lg:mt-12 tracking-wider font-bold text-center font-bangers">HELLO!</h1>
+                              <p className="text-[6vw] lg:text-[2vw] px-8 mb-12">
+                  I&apos;m Fawwaz, and I build things for the web. Through Mooz, I help people turn their exciting ideas into real projects.
+                              </p>
+                </div>
+              </div>
           </div>
 
           {/* Links grid */}
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             <Link 
               href="/tools"
-              className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 group"
+              className="bg-white p-6 transition-all duration-300 group border rounded-lg border-primary/40 aspect-square lg:aspect-auto"
             >
               <div className="flex flex-col items-center space-y-4">
                 <span className="text-3xl">🛠️</span>
@@ -43,7 +43,7 @@ export default function Home() {
 
             <Link 
               href="/contact"
-              className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 group"
+              className="bg-white p-6 transition-all duration-300 group border rounded-lg border-primary/40 aspect-square lg:aspect-auto"
             >
               <div className="flex flex-col items-center space-y-4">
                 <span className="text-3xl">📞</span>
@@ -56,8 +56,8 @@ export default function Home() {
         </div>
 
         {/* Right side image */}
-        <div className="hidden md:block">
-          <div className="relative w-full aspect-[3/4] rounded-[2.5rem] overflow-hidden">
+        <div className="hidden lg:block w-full h-full">
+          <div className="relative w-full h-full rounded-lg overflow-hidden">
             <Image
               src="/fawwaz.png"
               alt="Fawwaz"
@@ -68,6 +68,5 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
