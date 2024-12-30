@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className=" w-full grid grid-cols-1 lg:grid-cols-2 lg:min-h-dvh lg:h-fit gap-3 items-center p-3 bg-[gradient-to-br from-[#fcfbf7] to-[#fcfbf7]/80]">
+    <div className=" w-full grid grid-cols-1 lg:grid-cols-2 lg:min-h-dvh lg:h-fit gap-3 items-center p-3 bg-gradient-to-br from-[#fcfbf7] to-[#fcfbf7]/80">
       {/* Left side content */}
       <div className="border rounded-xl border-[#FFD600]/30 min-h-dvh h-fit md:min-h-0 md:h-full grid grid-rows-[1fr_auto] gap-4 p-4 backdrop-blur-sm">
         {/* Main content card */}
