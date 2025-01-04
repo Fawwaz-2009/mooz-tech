@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useCompletion } from "ai/react";
 import { Loader2 } from "lucide-react";
+
 interface Version {
   id: number;
   content: string;
@@ -29,6 +30,20 @@ export default function CoAuthorsPage() {
     },
   });
 
+  // Sync input with versions only when version changes
+  useEffect(() => {
+    const currentVersion = versions.find((v) => v.id === currentVersionId);
+    if (currentVersion) {
+      setInput(currentVersion.content);
+    }
+  }, [currentVersionId, versions, setInput]);
+
+  // Update current version when input changes manually
+  const handleInputUpdate = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    handleInputChange(e);
+    setVersions((prev) => prev.map((v) => (v.id === currentVersionId ? { ...v, content: e.target.value } : v)));
+  };
+
   useEffect(() => {
     setInput(completion);
   }, [completion, setInput]);
@@ -50,7 +65,6 @@ export default function CoAuthorsPage() {
         </div>
       )}
       <form className="grid grid-cols-[1fr_300px] gap-6">
-        {/* loading indicator */}
         {/* Main editing area */}
         <div className="space-y-4">
           <div className="p-6 border rounded-lg">
@@ -58,7 +72,7 @@ export default function CoAuthorsPage() {
               className="w-full h-48 p-4 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary"
               placeholder="Start writing your content here..."
               value={input}
-              onChange={handleInputChange}
+              onChange={handleInputUpdate}
             />
           </div>
           <div className="flex justify-end">
@@ -75,6 +89,7 @@ export default function CoAuthorsPage() {
             {versions.map((version) => (
               <button
                 key={version.id}
+                type="button"
                 onClick={() => handleVersionSelect(version.id)}
                 className={`w-full text-left p-2 rounded ${version.id === currentVersionId ? "bg-primary/10 text-primary" : "hover:bg-gray-100"}`}
               >
