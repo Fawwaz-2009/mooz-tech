@@ -4,6 +4,15 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useCompletion } from "ai/react";
 import { Loader2 } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Card, CardContent } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
 
 interface Version {
   id: number;
@@ -18,7 +27,6 @@ export default function CoAuthorsPage() {
   const { completion, isLoading, input, handleInputChange, handleSubmit, setInput } = useCompletion({
     api: "/api/co-authors/completion",
     onFinish: (prompt, completion) => {
-      // Create new version with AI response
       const newVersion: Version = {
         id: versions.length + 1,
         content: completion,
@@ -30,7 +38,6 @@ export default function CoAuthorsPage() {
     },
   });
 
-  // Sync input with versions only when version changes
   useEffect(() => {
     const currentVersion = versions.find((v) => v.id === currentVersionId);
     if (currentVersion) {
@@ -38,7 +45,6 @@ export default function CoAuthorsPage() {
     }
   }, [currentVersionId, versions, setInput]);
 
-  // Update current version when input changes manually
   const handleInputUpdate = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     handleInputChange(e);
     setVersions((prev) => prev.map((v) => (v.id === currentVersionId ? { ...v, content: e.target.value } : v)));
@@ -52,54 +58,62 @@ export default function CoAuthorsPage() {
     handleSubmit();
   };
 
-  const handleVersionSelect = (versionId: number) => {
-    setCurrentVersionId(versionId);
+  const handleVersionSelect = (value: string) => {
+    setCurrentVersionId(Number(value));
   };
 
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-4xl font-bold mb-6">Co-author Generator</h1>
-      {isLoading && (
-        <div className="flex justify-center items-center absolute top-4 left-4">
-          <Loader2 className="animate-spin size-6" />
-        </div>
-      )}
-      <form className="grid grid-cols-[1fr_300px] gap-6">
-        {/* Main editing area */}
-        <div className="space-y-4">
-          <div className="p-6 border rounded-lg">
-            <textarea
-              className="w-full h-48 p-4 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary"
-              placeholder="Start writing your content here..."
-              value={input}
-              onChange={handleInputUpdate}
-            />
+    <div className="container mx-auto py-8 max-w-4xl">
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-4xl font-bold">Co-author Generator</h1>
+        {isLoading && (
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Loader2 className="animate-spin size-4" />
+            <span className="text-sm">Generating...</span>
           </div>
-          <div className="flex justify-end">
-            <Button type="button" onClick={handleRewrite} disabled={!input.trim() || isLoading}>
-              {isLoading ? "Rewriting..." : "Rewrite with AI"}
+        )}
+      </div>
+
+      <Card>
+        <CardContent className="p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <Select value={currentVersionId.toString()} onValueChange={handleVersionSelect}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select version" />
+              </SelectTrigger>
+              <SelectContent>
+                {versions.map((version) => (
+                  <SelectItem key={version.id} value={version.id.toString()}>
+                    Version {version.id} - {version.timestamp.toLocaleTimeString()}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Button 
+              onClick={handleRewrite} 
+              disabled={!input.trim() || isLoading}
+              className="min-w-32"
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Rewriting...
+                </>
+              ) : (
+                "Rewrite with AI"
+              )}
             </Button>
           </div>
-        </div>
 
-        {/* Version history sidebar */}
-        <div className="border rounded-lg p-4">
-          <h2 className="font-semibold mb-4">Version History</h2>
-          <div className="space-y-2">
-            {versions.map((version) => (
-              <button
-                key={version.id}
-                type="button"
-                onClick={() => handleVersionSelect(version.id)}
-                className={`w-full text-left p-2 rounded ${version.id === currentVersionId ? "bg-primary/10 text-primary" : "hover:bg-gray-100"}`}
-              >
-                <div className="font-medium">Version {version.id}</div>
-                <div className="text-sm text-gray-500">{version.timestamp.toLocaleTimeString()}</div>
-              </button>
-            ))}
-          </div>
-        </div>
-      </form>
+          <Textarea
+            className="w-full min-h-[800px] p-4 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary bg-background"
+            placeholder="Start writing your content here..."
+            value={input}
+            onChange={handleInputUpdate}
+          />
+        </CardContent>
+      </Card>
     </div>
   );
 }
