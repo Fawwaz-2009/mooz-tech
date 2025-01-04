@@ -10,8 +10,10 @@
     "create-tree": "node scripts/generate-project-file-tree.js"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^1.0.13",
     "@radix-ui/react-avatar": "^1.1.2",
     "@radix-ui/react-slot": "^1.1.1",
+    "ai": "^4.0.25",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.469.0",
