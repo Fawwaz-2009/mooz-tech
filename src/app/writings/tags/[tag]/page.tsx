@@ -2,6 +2,7 @@ import { getWritingsByTag } from "@/lib/mdx";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { Clock } from "lucide-react";
 import { notFound } from "next/navigation";
 
 interface TagPageProps {
@@ -48,13 +49,19 @@ export default async function TagPage({ params }: TagPageProps) {
                     </Link>
                   ))}
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  {new Date(writing.publishedAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </p>
+                <div className="flex items-center gap-6 text-sm text-muted-foreground">
+                  <p>
+                    {new Date(writing.publishedAt).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </p>
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-4 w-4" />
+                    <span>{writing.readingTime.text}</span>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>

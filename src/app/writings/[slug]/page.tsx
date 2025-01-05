@@ -1,10 +1,11 @@
 import { getWritingBySlug } from "@/lib/mdx";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
+import { Clock } from "lucide-react";
 import Link from "next/link";
 
 interface WritingPageProps {
-  params:Promise<{
+  params: Promise<{
     slug: string;
   }>;
 }
@@ -25,13 +26,19 @@ export default async function WritingPage({ params }: WritingPageProps) {
             </Link>
           ))}
         </div>
-        <p className="text-muted-foreground">
-          {new Date(meta.publishedAt).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
-        </p>
+        <div className="flex items-center gap-4 text-muted-foreground">
+          <p>
+            {new Date(meta.publishedAt).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </p>
+          <div className="flex items-center gap-1">
+            <Clock className="h-4 w-4" />
+            <span>{meta.readingTime.text}</span>
+          </div>
+        </div>
       </header>
       <div className="prose dark:prose-invert max-w-none">{content}</div>
     </article>

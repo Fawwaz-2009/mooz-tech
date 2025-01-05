@@ -2,6 +2,7 @@ import { compileMDX } from 'next-mdx-remote/rsc';
 import { readFileSync, readdirSync } from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import readingTime from 'reading-time';
 
 export type WritingMeta = {
   title: string;
@@ -9,6 +10,12 @@ export type WritingMeta = {
   summary: string;
   slug: string;
   tags: string[];
+  readingTime: {
+    text: string;
+    minutes: number;
+    time: number;
+    words: number;
+  };
 };
 
 const writingsDirectory = path.join(process.cwd(), 'content');
@@ -18,6 +25,7 @@ export async function getWritingBySlug(slug: string) {
   const fileContent = readFileSync(filePath, 'utf8');
   
   const { data: frontMatter, content } = matter(fileContent);
+  const stats = readingTime(content);
   
   const { content: compiledContent } = await compileMDX({
     source: content,
@@ -29,6 +37,7 @@ export async function getWritingBySlug(slug: string) {
       ...frontMatter,
       tags: frontMatter.tags || [],
       slug,
+      readingTime: stats,
     } as WritingMeta,
     content: compiledContent,
   };
@@ -41,12 +50,14 @@ export function getAllWritings() {
   return mdxFiles.map((file) => {
     const filePath = path.join(writingsDirectory, file);
     const fileContent = readFileSync(filePath, 'utf8');
-    const { data: frontMatter } = matter(fileContent);
+    const { data: frontMatter, content } = matter(fileContent);
+    const stats = readingTime(content);
     
     return {
       ...frontMatter,
       tags: frontMatter.tags || [],
       slug: path.basename(file, '.mdx'),
+      readingTime: stats,
     } as WritingMeta;
   }).sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
 }
