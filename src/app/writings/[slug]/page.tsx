@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Calendar } from "lucide-react";
 import Link from "next/link";
+import markdownStyles from "./markdown-styles.module.css";
 
 interface WritingPageProps {
   params: Promise<{
@@ -49,9 +50,11 @@ export default async function WritingPage({ params }: WritingPageProps) {
         </div>
       </header>
 
-      <div className="prose dark:prose-invert max-w-none prose-lg prose-headings:scroll-mt-20">
-        {content}
-      </div>
+      <div 
+        // className="prose dark:prose-invert max-w-none"
+        className={markdownStyles["markdown"]}
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
     </article>
   );
 }

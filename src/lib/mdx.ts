@@ -1,8 +1,10 @@
-import { compileMDX } from 'next-mdx-remote/rsc';
 import { readFileSync, readdirSync } from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
+import { remark } from 'remark';
+import html from 'remark-html';
+import remarkGfm from 'remark-gfm';
 
 export type WritingMeta = {
   title: string;
@@ -20,17 +22,21 @@ export type WritingMeta = {
 
 const writingsDirectory = path.join(process.cwd(), 'content');
 
+async function markdownToHtml(markdown: string) {
+  const result = await remark()
+    .use(html, { sanitize: false }) // Allow HTML in markdown
+    .use(remarkGfm) // GitHub Flavored Markdown support
+    .process(markdown);
+  return result.toString();
+}
+
 export async function getWritingBySlug(slug: string) {
   const filePath = path.join(writingsDirectory, `${slug}.mdx`);
   const fileContent = readFileSync(filePath, 'utf8');
   
   const { data: frontMatter, content } = matter(fileContent);
   const stats = readingTime(content);
-  
-  const { content: compiledContent } = await compileMDX({
-    source: content,
-    options: { parseFrontmatter: true }
-  });
+  const htmlContent = await markdownToHtml(content);
 
   return {
     meta: {
@@ -39,7 +45,7 @@ export async function getWritingBySlug(slug: string) {
       slug,
       readingTime: stats,
     } as WritingMeta,
-    content: compiledContent,
+    content: htmlContent,
   };
 }
 
