@@ -1,20 +1,26 @@
 import { getWritingBySlug, getAllWritings } from "@/lib/mdx";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import styles from './writing-body.module.css';
+import { WritingInteractions } from "@/components/writing/writing-interactions";
+import { getCounters, incrementViews } from "./actions";
 
 interface WritingPageProps {
-  params: Promise<{
+  params: {
     slug: string;
-  }>;
+  };
 }
 
 export default async function WritingPage({ params }: WritingPageProps) {
-    const { slug } = await params;
+  const { slug } = params;
   const { meta, content } = await getWritingBySlug(slug).catch(() => notFound());
+  
+  // Increment view count and get counters
+  await incrementViews(slug);
+  const counters = await getCounters(slug);
   
   // Get related posts (same tag)
   const allWritings = getAllWritings();
@@ -55,7 +61,12 @@ export default async function WritingPage({ params }: WritingPageProps) {
             })}
           </time>
           <span>·</span>
-          <span>{meta.readingTime.text}</span>
+          <div className="flex items-center gap-1">
+            <Clock className="h-4 w-4" />
+            <span>{meta.readingTime.text}</span>
+          </div>
+          <span>·</span>
+          <span>{counters.views} views</span>
           <div className="flex flex-wrap gap-2">
             {meta.tags.map((tag) => (
               <Link key={tag} href={`/writings/tags/${tag}`}>
@@ -83,8 +94,19 @@ export default async function WritingPage({ params }: WritingPageProps) {
 
       {/* Article Content */}
       <div 
-      className={styles.markdown}
-      dangerouslySetInnerHTML={{ __html: content }} 
+        className={styles.markdown}
+        dangerouslySetInnerHTML={{ __html: content }} 
+      />
+
+      {/* Interactions */}
+      <WritingInteractions
+        slug={slug}
+        title={meta.title}
+        initialCounts={{
+          likes: counters.likes,
+          loves: counters.loves,
+          awards: counters.awards,
+        }}
       />
 
       {/* Related Posts */}
