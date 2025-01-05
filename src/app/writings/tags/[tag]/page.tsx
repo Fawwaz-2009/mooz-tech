@@ -1,70 +1,63 @@
-import { getWritingsByTag } from "@/lib/mdx";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getWritingsByTag, getAllTags } from "@/lib/mdx";
+import { WritingCard } from "@/components/writing/writing-card";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Clock } from "lucide-react";
 import { notFound } from "next/navigation";
 
 interface TagPageProps {
-  params: Promise<{
+  params: {
     tag: string;
-  }>;
+  };
 }
 
-export default async function TagPage({ params }: TagPageProps) {
-  const tag = await params;
-  const writings = getWritingsByTag(tag.tag);
-
+export default function TagPage({ params }: TagPageProps) {
+  const writings = getWritingsByTag(params.tag);
+  const allTags = getAllTags();
+  
   if (writings.length === 0) {
     notFound();
   }
 
   return (
-    <div className="container mx-auto py-8">
-      <div className="flex items-center gap-4 mb-8">
-        <h1 className="text-4xl font-bold">Tag:</h1>
-        <Badge variant="secondary" className="text-lg py-1">
-          {tag.tag}
-        </Badge>
-      </div>
-      <div className="grid gap-6">
-        {writings.map((writing) => (
-          <div key={writing.slug}>
-            <Card className="hover:bg-muted/50 transition-colors">
-              <Link href={`/writings/${writing.slug}`}>
-                <CardHeader>
-                  <CardTitle>{writing.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4">{writing.summary}</p>
-                </CardContent>
+    <div className="container max-w-4xl mx-auto px-4 md:px-8 py-8 md:py-12">
+      {/* Navigation Header */}
+      <div className="mb-16">
+        <div className="flex items-center gap-4 mb-8">
+          <Link 
+            href="/writings"
+            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span>Back to writings</span>
+          </Link>
+        </div>
+        
+        <div className="flex flex-col gap-4">
+          <h1 className="text-3xl md:text-4xl font-bold">
+            Posts tagged with &quot;{params.tag}&quot;
+          </h1>
+          
+          {/* Tag Navigation */}
+          <div className="flex flex-wrap gap-2">
+            {allTags.map((tag) => (
+              <Link key={tag} href={`/writings/tags/${tag}`}>
+                <Badge 
+                  variant={tag === params.tag ? "default" : "secondary"}
+                  className="hover:bg-secondary/80"
+                >
+                  {tag}
+                </Badge>
               </Link>
-              <CardContent className="pt-0">
-                <div className="flex gap-2 mb-4">
-                  {writing.tags.map((tag) => (
-                    <Link key={tag} href={`/writings/tags/${tag}`} className="no-underline">
-                      <Badge variant="outline" className="hover:bg-secondary/20">
-                        {tag}
-                      </Badge>
-                    </Link>
-                  ))}
-                </div>
-                <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                  <p>
-                    {new Date(writing.publishedAt).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </p>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
-                    <span>{writing.readingTime.text}</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            ))}
           </div>
+        </div>
+      </div>
+
+      {/* Writings List */}
+      <div className="space-y-8">
+        {writings.map((writing) => (
+          <WritingCard key={writing.slug} writing={writing} />
         ))}
       </div>
     </div>
