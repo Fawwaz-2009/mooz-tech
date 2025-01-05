@@ -6,13 +6,14 @@ import { Badge } from "@/components/ui/badge";
 import { notFound } from "next/navigation";
 
 interface TagPageProps {
-  params: {
+  params: Promise<{
     tag: string;
-  };
+  }>;
 }
 
-export default function TagPage({ params }: TagPageProps) {
-  const writings = getWritingsByTag(params.tag);
+export default async function TagPage({ params }: TagPageProps) {
+    const { tag } = await params;
+  const writings = getWritingsByTag(tag);
   const allTags = getAllTags();
   
   if (writings.length === 0) {
@@ -35,7 +36,7 @@ export default function TagPage({ params }: TagPageProps) {
         
         <div className="flex flex-col gap-4">
           <h1 className="text-3xl md:text-4xl font-bold">
-            Posts tagged with &quot;{params.tag}&quot;
+            Posts tagged with &quot;{tag}&quot;
           </h1>
           
           {/* Tag Navigation */}
@@ -43,7 +44,7 @@ export default function TagPage({ params }: TagPageProps) {
             {allTags.map((tag) => (
               <Link key={tag} href={`/writings/tags/${tag}`}>
                 <Badge 
-                  variant={tag === params.tag ? "default" : "secondary"}
+                  variant={tag === tag ? "default" : "secondary"}
                   className="hover:bg-secondary/80"
                 >
                   {tag}

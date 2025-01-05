@@ -4,21 +4,23 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import styles from './writing-body.module.css';
 
 interface WritingPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default async function WritingPage({ params }: WritingPageProps) {
-  const { meta, content } = await getWritingBySlug(params.slug).catch(() => notFound());
+    const { slug } = await params;
+  const { meta, content } = await getWritingBySlug(slug).catch(() => notFound());
   
   // Get related posts (same tag)
   const allWritings = getAllWritings();
   const relatedWritings = allWritings
     .filter(w => 
-      w.slug !== params.slug && // Not the current post
+      w.slug !== slug && // Not the current post
       w.tags.some(t => meta.tags.includes(t)) // Has at least one tag in common
     )
     .slice(0, 3); // Limit to 3 related posts
@@ -81,8 +83,8 @@ export default async function WritingPage({ params }: WritingPageProps) {
 
       {/* Article Content */}
       <div 
-        className="prose dark:prose-invert max-w-none"
-        dangerouslySetInnerHTML={{ __html: content }} 
+      className={styles.markdown}
+      dangerouslySetInnerHTML={{ __html: content }} 
       />
 
       {/* Related Posts */}
