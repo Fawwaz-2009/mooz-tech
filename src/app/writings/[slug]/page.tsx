@@ -1,9 +1,8 @@
-import { getWritingBySlug } from "@/lib/mdx";
+import { getWritingBySlug, getAllWritings } from "@/lib/mdx";
 import { notFound } from "next/navigation";
-import { Badge } from "@/components/ui/badge";
-import { Clock, Calendar } from "lucide-react";
-import Link from "next/link";
-import markdownStyles from "./markdown-styles.module.css";
+import { WritingHeader } from "@/components/writing/writing-header";
+import { WritingBody } from "@/components/writing/writing-body";
+import { type Metadata } from "next";
 
 interface WritingPageProps {
   params: Promise<{
@@ -15,46 +14,47 @@ export default async function WritingPage({ params }: WritingPageProps) {
   const { meta, content } = await getWritingBySlug((await params).slug).catch(() => notFound());
 
   return (
-    <article className="container mx-auto py-12 max-w-4xl">
-      <header className="mb-16">
-        <h1 className="text-5xl font-bold mb-8 bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
-          {meta.title}
-        </h1>
-        
-        <div className="flex flex-wrap items-center gap-6 text-muted-foreground text-sm">
-          <div className="flex items-center gap-2">
-            <Calendar className="h-4 w-4" />
-            <time dateTime={meta.publishedAt}>
-              {new Date(meta.publishedAt).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Clock className="h-4 w-4" />
-            <span>{meta.readingTime.text}</span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            {meta.tags.map((tag) => (
-              <Link key={tag} href={`/writings/tags/${tag}`}>
-                <Badge variant="secondary" className="hover:bg-secondary/80">
-                  {tag}
-                </Badge>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </header>
-
-      <div 
-        // className="prose dark:prose-invert max-w-none"
-        className={markdownStyles["markdown"]}
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
+    <article className="container mx-auto px-4 md:px-8 py-8 md:py-12 max-w-4xl">
+      <WritingHeader meta={meta} />
+      <WritingBody content={content} />
     </article>
   );
+}
+
+export async function generateMetadata({ params }: WritingPageProps): Promise<Metadata> {
+  const post = await getWritingBySlug((await params).slug).catch(() => notFound());
+
+  if (!post) {
+    return notFound();
+  }
+
+  const { meta } = post;
+  const title = `${meta.title} | Mooz Tech`;
+  const description = meta.summary;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      publishedTime: meta.publishedAt,
+      images: meta.ogImage ? [meta.ogImage.url] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: meta.ogImage ? [meta.ogImage.url] : [],
+    },
+  };
+}
+
+export async function generateStaticParams() {
+  const writings = getAllWritings();
+
+  return writings.map((writing) => ({
+    slug: writing.slug,
+  }));
 }

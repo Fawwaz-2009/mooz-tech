@@ -12,6 +12,10 @@ export type WritingMeta = {
   summary: string;
   slug: string;
   tags: string[];
+  coverImage?: string;
+  ogImage?: {
+    url: string;
+  };
   readingTime: {
     text: string;
     minutes: number;
@@ -24,8 +28,8 @@ const writingsDirectory = path.join(process.cwd(), 'content');
 
 async function markdownToHtml(markdown: string) {
   const result = await remark()
-    .use(html, { sanitize: false }) // Allow HTML in markdown
-    .use(remarkGfm) // GitHub Flavored Markdown support
+    .use(html, { sanitize: false })
+    .use(remarkGfm)
     .process(markdown);
   return result.toString();
 }
@@ -44,6 +48,7 @@ export async function getWritingBySlug(slug: string) {
       tags: frontMatter.tags || [],
       slug,
       readingTime: stats,
+      ogImage: frontMatter.ogImage || (frontMatter.coverImage ? { url: frontMatter.coverImage } : undefined),
     } as WritingMeta,
     content: htmlContent,
   };
@@ -64,6 +69,7 @@ export function getAllWritings() {
       tags: frontMatter.tags || [],
       slug: path.basename(file, '.mdx'),
       readingTime: stats,
+      ogImage: frontMatter.ogImage || (frontMatter.coverImage ? { url: frontMatter.coverImage } : undefined),
     } as WritingMeta;
   }).sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
 }

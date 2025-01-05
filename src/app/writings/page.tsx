@@ -1,70 +1,44 @@
-import { getAllWritings, getAllTags } from "@/lib/mdx";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
-import { Clock } from "lucide-react";
+import { getAllWritings } from "@/lib/mdx";
+import { WritingsHeader } from "@/components/writing/writings-header";
+import { WritingCard } from "@/components/writing/writing-card";
 
-export default async function WritingsPage() {
+function groupWritingsByYear(writings: ReturnType<typeof getAllWritings>) {
+  const groups = writings.reduce((acc, writing) => {
+    const year = new Date(writing.publishedAt).getFullYear();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(writing);
+    return acc;
+  }, {} as Record<number, typeof writings>);
+
+  // Sort years in descending order
+  return Object.entries(groups)
+    .sort(([a], [b]) => Number(b) - Number(a))
+    .map(([year, posts]) => ({
+      year: Number(year),
+      posts,
+    }));
+}
+
+export default function WritingsPage() {
   const writings = getAllWritings();
-  const tags = getAllTags();
+  const writingsByYear = groupWritingsByYear(writings);
 
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-4xl font-bold mb-8">Writings</h1>
+    <div className="container max-w-4xl mx-auto px-4 md:px-8 py-8 md:py-12">
+      <WritingsHeader />
 
-      {/* Tags Section */}
-      <div className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">Browse by Tag</h2>
-        <div className="flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <Link key={tag} href={`/writings/tags/${tag}`}>
-              <Badge variant="secondary" className="hover:bg-secondary/80 cursor-pointer">
-                {tag}
-              </Badge>
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      {/* Writings List */}
-      <div className="grid gap-6">
-        {writings.map((writing) => (
-          <div key={writing.slug}>
-            <Card className="hover:bg-muted/50 transition-colors">
-              <Link href={`/writings/${writing.slug}`}>
-                <CardHeader>
-                  <CardTitle>{writing.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4">{writing.summary}</p>
-                </CardContent>
-              </Link>
-              <CardContent className="pt-0">
-                <div className="flex gap-2 mb-4">
-                  {writing.tags.map((tag) => (
-                    <Link key={tag} href={`/writings/tags/${tag}`} className="no-underline">
-                      <Badge variant="outline" className="hover:bg-secondary/20">
-                        {tag}
-                      </Badge>
-                    </Link>
-                  ))}
-                </div>
-                <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                  <p>
-                    {new Date(writing.publishedAt).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </p>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
-                    <span>{writing.readingTime.text}</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+      <div className="divide-y divide-border">
+        {writingsByYear.map(({ year, posts }) => (
+          <section key={year} className="py-8 first:pt-0">
+            <h2 className="text-2xl font-bold mb-8">{year}</h2>
+            <div>
+              {posts.map((writing) => (
+                <WritingCard key={writing.slug} writing={writing} />
+              ))}
+            </div>
+          </section>
         ))}
       </div>
     </div>
