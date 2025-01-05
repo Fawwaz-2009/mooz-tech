@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import { Bangers, Roboto } from "next/font/google";
 import "./globals.css";
+import { Viewport } from 'next'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+} 
 
 const bangers = Bangers({
   variable: "--font-bangers",
@@ -54,11 +62,6 @@ export const metadata: Metadata = {
     apple: [
       { url: "/mooz-logo.jpg", sizes: "180x180", type: "image/jpeg" },
     ],
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
   },
 };
 
