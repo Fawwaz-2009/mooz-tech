@@ -1,4 +1,5 @@
-import { getWritingBySlug, getAllWritings } from "@/lib/mdx";
+import { getWritingBySlug } from "@/lib/mdx";
+// import { getWritingBySlug, getAllWritings } from "@/lib/mdx";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Clock } from "lucide-react";
@@ -7,6 +8,7 @@ import Image from "next/image";
 import styles from "./writing-body.module.css";
 import { WritingInteractions } from "@/components/writing/writing-interactions";
 import { getCounters, incrementViews } from "./actions";
+import { Button } from "@/components/ui/button";
 
 interface WritingPageProps {
   params: Promise<{
@@ -23,17 +25,17 @@ export default async function WritingPage({ params }: WritingPageProps) {
   const counters = await getCounters(slug);
 
   // Get related posts (same tag)
-  const allWritings = getAllWritings();
-  const relatedWritings = allWritings
-    .filter(
-      (w) =>
-        w.slug !== slug && // Not the current post
-        w.tags.some((t) => meta.tags.includes(t)) // Has at least one tag in common
-    )
-    .slice(0, 3); // Limit to 3 related posts
+  //   const allWritings = getAllWritings();
+  //   const relatedWritings = allWritings
+  //     .filter(
+  //       (w) =>
+  //         w.slug !== slug && // Not the current post
+  //         w.tags.some((t) => meta.tags.includes(t)) // Has at least one tag in common
+  //     )
+  //     .slice(0, 3); // Limit to 3 related posts
 
   return (
-    <article className="container max-w-4xl mx-auto px-4 md:px-8 py-8 md:py-12">
+    <article className="container max-w-2xl mx-auto px-4 md:px-8 py-8 md:py-12">
       {/* Navigation */}
       <div className="mb-16">
         <div className="flex items-center gap-4 mb-8">
@@ -96,7 +98,7 @@ export default async function WritingPage({ params }: WritingPageProps) {
       />
 
       {/* Related Posts */}
-      {relatedWritings.length > 0 && (
+      {/* {relatedWritings.length > 0 && (
         <aside className="mt-16 pt-16 border-t">
           <h2 className="text-2xl font-bold mb-8">Related Writings</h2>
           <div className="grid gap-8">
@@ -117,7 +119,17 @@ export default async function WritingPage({ params }: WritingPageProps) {
             ))}
           </div>
         </aside>
-      )}
+      )} */}
+
+      <div className="space-y-4">
+        <p>If you enjoyed reading this, checkout my other writings:</p>
+        <Button variant="outline" asChild>
+          <Link href="/writings">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            all writings
+          </Link>
+        </Button>
+      </div>
     </article>
   );
 }

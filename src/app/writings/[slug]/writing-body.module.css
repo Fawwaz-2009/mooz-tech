@@ -2,15 +2,41 @@
   @apply max-w-none;
 }
 
+/* Headings */
 .markdown h1,
 .markdown h2,
 .markdown h3,
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  @apply font-bold text-foreground mt-8 mb-4 scroll-mt-20;
+  @apply font-bold text-foreground mt-8 mb-4 scroll-mt-20 relative;
 }
 
+/* Anchor links for headings */
+.markdown h1 .anchor,
+.markdown h2 .anchor,
+.markdown h3 .anchor,
+.markdown h4 .anchor,
+.markdown h5 .anchor,
+.markdown h6 .anchor {
+  @apply invisible absolute no-underline -ml-[1em] pr-2 w-[80%] max-w-[700px] cursor-pointer;
+}
+
+.markdown h1:hover .anchor,
+.markdown h2:hover .anchor,
+.markdown h3:hover .anchor,
+.markdown h4:hover .anchor,
+.markdown h5:hover .anchor,
+.markdown h6:hover .anchor {
+  @apply visible;
+}
+
+.markdown .anchor::after {
+  content: "#";
+  @apply text-neutral-300 dark:text-neutral-600;
+}
+
+/* Text sizes */
 .markdown h1 {
   @apply text-3xl md:text-4xl;
 }
@@ -27,14 +53,20 @@
   @apply text-lg md:text-xl;
 }
 
+/* Paragraphs and links */
 .markdown p {
   @apply mb-4 leading-relaxed text-base md:text-lg;
 }
 
 .markdown a {
-  @apply text-primary underline hover:text-primary/80;
+  @apply text-primary underline decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em] transition-all duration-150;
 }
 
+.markdown a:hover {
+  @apply decoration-neutral-600 dark:decoration-neutral-400;
+}
+
+/* Lists */
 .markdown ul,
 .markdown ol {
   @apply my-6 ml-6;
@@ -52,26 +84,76 @@
   @apply mb-2 text-base md:text-lg;
 }
 
+/* Blockquotes */
 .markdown blockquote {
   @apply border-l-4 border-primary pl-4 italic my-6;
 }
 
+/* Code blocks */
 .markdown pre {
-  @apply bg-muted p-4 rounded-lg overflow-x-auto my-6 -mx-4 md:mx-0;
+  @apply bg-neutral-900 border border-neutral-800 rounded-lg overflow-x-auto my-6 -mx-4 md:mx-0 scrollbar-hide;
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
 }
 
 .markdown code {
-  @apply bg-muted px-1.5 py-0.5 rounded text-sm;
+  @apply bg-neutral-100 dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-lg px-1 py-0.5 text-sm text-neutral-900 dark:text-neutral-100;
 }
 
 .markdown pre code {
-  @apply text-sm md:text-base px-0 py-0;
+  @apply text-sm md:text-base px-0 py-0 border-0 bg-transparent text-neutral-100;
 }
 
+/* Images */
 .markdown img {
-  @apply rounded-lg my-8 -mx-4 md:mx-0 w-[calc(100%+2rem)] md:w-full;
+  @apply rounded-lg my-8 -mx-4 md:mx-0 w-[calc(100%+2rem)] md:w-full m-0;
 }
 
+/* Horizontal rule */
 .markdown hr {
   @apply my-8 border-border;
+}
+
+/* Tables */
+.markdown table {
+  @apply block max-w-fit overflow-x-auto whitespace-nowrap scrollbar-hide;
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+/* Pretty code blocks */
+.markdown [data-rehype-pretty-code-fragment] code {
+  @apply grid min-w-full break-words rounded-none border-0 bg-transparent p-0 text-sm text-black box-decoration-clone;
+  counter-reset: line;
+}
+
+.markdown [data-rehype-pretty-code-fragment] .line {
+  @apply py-1;
+}
+
+.markdown [data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
+  @apply inline-block w-4 mr-4 text-right text-gray-500;
+  counter-increment: line;
+  content: counter(line);
+}
+
+.markdown [data-rehype-pretty-code-fragment] .line--highlighted {
+  @apply bg-slate-500/10;
+}
+
+.markdown [data-rehype-pretty-code-fragment] .word--highlighted {
+  @apply rounded-md bg-slate-500/10 p-1;
+}
+
+.markdown [data-rehype-pretty-code-title] {
+  @apply rounded-t-lg border border-neutral-800 bg-neutral-900 px-4 py-3 font-mono text-xs font-medium text-neutral-200;
+}
+
+.markdown [data-rehype-pretty-code-title] + pre {
+  @apply mt-0 rounded-t-none border-t-0;
+}
+
+/* Hide scrollbars but allow scrolling */
+.markdown ::-webkit-scrollbar {
+  display: none;
 } 
