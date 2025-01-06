@@ -4,30 +4,31 @@ import Link from "next/link";
 import { ArrowLeft, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import styles from './writing-body.module.css';
+import styles from "./writing-body.module.css";
 import { WritingInteractions } from "@/components/writing/writing-interactions";
 import { getCounters, incrementViews } from "./actions";
 
 interface WritingPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default async function WritingPage({ params }: WritingPageProps) {
-  const { slug } = params;
+  const { slug } = await params;
   const { meta, content } = await getWritingBySlug(slug).catch(() => notFound());
-  
+
   // Increment view count and get counters
   await incrementViews(slug);
   const counters = await getCounters(slug);
-  
+
   // Get related posts (same tag)
   const allWritings = getAllWritings();
   const relatedWritings = allWritings
-    .filter(w => 
-      w.slug !== slug && // Not the current post
-      w.tags.some(t => meta.tags.includes(t)) // Has at least one tag in common
+    .filter(
+      (w) =>
+        w.slug !== slug && // Not the current post
+        w.tags.some((t) => meta.tags.includes(t)) // Has at least one tag in common
     )
     .slice(0, 3); // Limit to 3 related posts
 
@@ -36,10 +37,7 @@ export default async function WritingPage({ params }: WritingPageProps) {
       {/* Navigation */}
       <div className="mb-16">
         <div className="flex items-center gap-4 mb-8">
-          <Link 
-            href="/writings"
-            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-          >
+          <Link href="/writings" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="h-4 w-4" />
             <span>Back to writings</span>
           </Link>
@@ -48,10 +46,8 @@ export default async function WritingPage({ params }: WritingPageProps) {
 
       {/* Article Header */}
       <header className="mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
-          {meta.title}
-        </h1>
-        
+        <h1 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">{meta.title}</h1>
+
         <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground mb-8">
           <time dateTime={meta.publishedAt}>
             {new Date(meta.publishedAt).toLocaleDateString("en-US", {
@@ -80,23 +76,13 @@ export default async function WritingPage({ params }: WritingPageProps) {
 
         {meta.coverImage && (
           <div className="mb-8">
-            <Image
-              src={meta.coverImage}
-              alt={`Cover Image for ${meta.title}`}
-              className="rounded-lg shadow-sm"
-              width={1300}
-              height={630}
-              priority
-            />
+            <Image src={meta.coverImage} alt={`Cover Image for ${meta.title}`} className="rounded-lg shadow-sm" width={1300} height={630} priority />
           </div>
         )}
       </header>
 
       {/* Article Content */}
-      <div 
-        className={styles.markdown}
-        dangerouslySetInnerHTML={{ __html: content }} 
-      />
+      <div className={styles.markdown} dangerouslySetInnerHTML={{ __html: content }} />
 
       {/* Interactions */}
       <WritingInteractions
@@ -114,31 +100,17 @@ export default async function WritingPage({ params }: WritingPageProps) {
         <aside className="mt-16 pt-16 border-t">
           <h2 className="text-2xl font-bold mb-8">Related Writings</h2>
           <div className="grid gap-8">
-            {relatedWritings.map(writing => (
-              <Link 
-                key={writing.slug} 
-                href={`/writings/${writing.slug}`}
-                className="block group"
-              >
+            {relatedWritings.map((writing) => (
+              <Link key={writing.slug} href={`/writings/${writing.slug}`} className="block group">
                 <article className="grid md:grid-cols-4 gap-4">
                   {writing.coverImage && (
                     <div className="md:col-span-1">
-                      <Image
-                        src={writing.coverImage}
-                        alt={writing.title}
-                        width={200}
-                        height={112}
-                        className="rounded-lg object-cover aspect-video"
-                      />
+                      <Image src={writing.coverImage} alt={writing.title} width={200} height={112} className="rounded-lg object-cover aspect-video" />
                     </div>
                   )}
                   <div className={writing.coverImage ? "md:col-span-3" : "md:col-span-4"}>
-                    <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
-                      {writing.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      {writing.summary}
-                    </p>
+                    <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">{writing.title}</h3>
+                    <p className="text-sm text-muted-foreground mt-1">{writing.summary}</p>
                   </div>
                 </article>
               </Link>
