@@ -48,7 +48,9 @@ export default async function WritingPage({ params }: WritingPageProps) {
 
       {/* Article Header */}
       <header className="mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">{meta.title}</h1>
+        <h1 className="font-bold text-4xl text-heading-dark dark:text-purple-300 flex justify-center items-center rounded transition-colors [text-shadow:0.125rem_0.125rem_0_#fce1a8] dark:[text-shadow:none] mb-8">
+          {meta.title}
+        </h1>
 
         <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground mb-8">
           <time dateTime={meta.publishedAt}>
