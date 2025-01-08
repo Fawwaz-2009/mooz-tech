@@ -1,55 +1,139 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { Mail, Linkedin, MessageCircle } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className=" w-full grid grid-cols-1 lg:grid-cols-2 lg:min-h-dvh lg:h-fit gap-3 items-center p-3 bg-gradient-to-br from-[#fcfbf7] to-[#fcfbf7]/80">
-      {/* Left side content */}
-      <div className="border rounded-xl border-[#FFD600]/30 min-h-dvh h-fit md:min-h-0 md:h-full grid grid-rows-[1fr_auto] gap-4 p-4 backdrop-blur-sm">
-        {/* Main content card */}
-        <div className="grid grid-rows-[auto_1fr] gap-4 border rounded-xl border-[#FFD600]/30 hover:border-primary/30 transition-colors">
-          <div className="p-4 flex justify-center">
-            <Image 
-              src="/mooz-logo.jpg" 
-              alt="Mooz Logo" 
-              width={90} 
-              height={90} 
-              className="rounded-full bg-yellow-300" 
-            />
-          </div>
-          <div className="grid items-center">
-            <div className="">
-              <h1 className="text-[30vw] lg:text-[12vw] lg:leading-[0.8em] lg:mb-12 lg:mt-20 tracking-wider font-bold text-center font-bangers text-primary">HELLO!</h1>
-              <p className="text-[6vw] lg:text-[2vw] px-8 mb-12 max-w-2xl mx-auto">
-                I&apos;m Fawwaz, and I build things for the web. Through Mooz, I help people turn their exciting ideas into real projects.
+    <div className="">
+      <nav className="mx-auto flex max-w-5xl items-center justify-between p-4">
+        <Link href="/">
+          <img src="/mooz-logo2.jpg" alt="Logo" className="h-16 w-auto rounded-full" />
+        </Link>
+        <Link href="/writings">Writings</Link>
+      </nav>
+      <div className="mx-auto grid max-w-5xl grid-cols-1 justify-center gap-24 md:gap-32 p-4 pt-28 md:pt-40">
+        <div className="flex flex-col gap-4">
+          <h1 className="text-left md:text-center font-mono text-3xl md:text-5xl font-light leading-normal">
+            I develop <span className="font-bold">minimalist</span> but <span className="font-bold">mighty</span> apps for the web,{" "}
+            <span className="font-bold">FAST</span>.
+          </h1>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr,2fr]">
+          <div className="rounded-3xl bg-[#f7f7f9] p-6 pb-7 relative">
+            <div className="flex flex-col gap-4 md:grid md:grid-rows-2 items-between h-full">
+              <div className="flex items-start gap-4">
+                <div className="flex flex-col gap-2">
+                  <img src="/fawwaz-avatar.png" alt="Avatar" className="h-16 w-16 rounded-full bg-orange-300" />
+                  <h2 className="text-2xl font-bold">Fawwaz Alharbi</h2>
+                  <p className="text-gray-600">Builder of apps, based in Bali</p>
+                  <div className="flex items-center gap-1">
+                    <span className="h-2 w-2 rounded-full bg-green-500"></span>
+                    <span className="text-green-600">Available</span>
+                  </div>
+                </div>
+              </div>
+              <p className="text-xl text-gray-700 mt-4">
+                {` Hi I'm the guy behind Mooz and with 9+ years of turning complex problems into elegant solutions, I build products that excite me—and hopefully
+                you too. Let's connect if you're nearby! 🌊`}
               </p>
             </div>
           </div>
-        </div>
-
-        {/* Links grid */}
-        <div className="grid grid-cols-1 gap-4">
-          <Button variant={"ghost"} asChild className="h-auto">
-            <Link 
-              href="mailto:fawwaz@mooz.tech" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="w-full px-6 py-5 transition-all duration-300 group border rounded-xl border-[#FFD600]/30 "
-            >
-              <div className="flex flex-col items-center space-y-3">
-                <span className="text-3xl">📞</span>
-                <span className="text-lg font-medium">Contact me</span>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:grid-rows-2">
+            <div className="h-80 w-full rounded-3xl bg-red-200 overflow-hidden relative md:col-span-2">
+              <img src="/writings-2.png" alt="" className="h-full w-full object-cover brightness-[0.75]" />
+              <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-black/50 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 w-full h-full flex flex-col justify-end p-4">
+                <h3 className="text-2xl font-bold text-white">Writings</h3>
+                <p className="text-white">My thoughts on building products</p>
               </div>
-            </Link>
-          </Button>
+            </div>
+            <div className="h-80 w-full rounded-3xl bg-[#f2f2f2] overflow-hidden relative">
+              <div className="relative w-full h-48 flex justify-center">
+                <div className="absolute transform rotate-[-8deg] translate-y-4 translate-x-4">
+                  <Image src="/books/fooled-by-randomness.png" alt="Fooled by Randomness" width={140} height={180} className="rounded shadow-lg" />
+                </div>
+                <div className="absolute transform translate-x-8 rotate-[-4deg]">
+                  <Image src="/books/this-is-marketing.png" alt="This is Marketing" width={140} height={180} className="rounded shadow-lg" />
+                </div>
+                <div className="absolute transform rotate-[4deg] -translate-y-2 -translate-x-2">
+                  <Image src="/books/sprint.png" alt="Sprint" width={140} height={180} className="rounded shadow-lg" />
+                </div>
+                <div className="absolute transform rotate-[-4deg] translate-y-2 translate-x-2">
+                  <Image src="/books/refactoring-ui.png" alt="Refactoring UI" width={140} height={180} className="rounded shadow-lg" />
+                </div>
+              </div>
+              <div className="absolute bottom-0 left-0 w-full h-full flex flex-col justify-end p-4">
+                <h3 className="text-2xl font-bold ">Books</h3>
+                <p className="">{`Books I've read and recommend`}</p>
+              </div>
+            </div>
+            <div className="h-80 w-full rounded-3xl bg-red-200 overflow-hidden relative">
+              <img src="/love-apps.jpg" alt="" className="h-full w-full object-cover brightness-[0.75]" />
+              <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-black/50 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 w-full h-full flex flex-col justify-end p-4">
+                <h3 className="text-2xl font-bold text-white">Lovable Apps</h3>
+                <p className="text-white">(coming)</p>
+              </div>
+            </div>{" "}
+          </div>
         </div>
-      </div>
-
-      {/* Right side image */}
-      <div className="hidden lg:block w-full h-full">
-        <div className="relative w-full h-full rounded-xl overflow-hidden">
-          <Image src="/fawwaz.png" alt="Fawwaz" fill className="object-cover hover:scale-[1.02] transition-transform duration-500" priority />
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="h-96 rounded-3xl bg-yellow-200  relative">
+            <p className="text-4xl font-semibold text-center pt-20 font-mono">Book a call with me</p>
+            <div className="absolute bottom-0 w-full flex justify-center h-48 pb-8">
+              <img src="/cal.png" alt="Calendar" className="h-48 w-auto" />
+            </div>
+          </div>
+          <div className="h-96 rounded-3xl bg-slate-200 grid gird-cols-1 items-center justify-center text-center">
+            <div className="flex flex-col gap-10">
+              <p className="text-4xl font-semibold font-mono">Contact Me</p>
+              <p className="text-muted-foreground text-2xl">fawwaz@mooz.tech</p>
+              <ul className="flex gap-4">
+                <li>
+                  <Button variant="ghost" size="icon" asChild>
+                    <a href="mailto:fawwaz@mooz.tech">
+                      <Mail className="h-5 w-5" />
+                    </a>
+                  </Button>
+                </li>
+                <li>
+                  <Button variant="ghost" size="icon" asChild>
+                    <a href="https://linkedin.com/in/fawwaz-mooz">
+                      <Linkedin className="h-5 w-5" />
+                    </a>
+                  </Button>
+                </li>
+                <li>
+                  <Button variant="ghost" size="icon" asChild>
+                    <a href="https://wa.me/6281234567890">
+                      <MessageCircle className="h-5 w-5" />
+                    </a>
+                  </Button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {/* <div className="rounded-3xl bg-[#f7f7f9] p-8">
+          <div className="flex items-center gap-3">
+            <img 
+              src="https://via.placeholder.com/24"
+              alt="CV Icon" 
+              className="h-6 w-6"
+            />
+            <div className="flex flex-col">
+              <h3 className="text-xl font-semibold">Want to learn more?</h3>
+              <a href="https://read.cv/fawwaz" className="text-gray-600 hover:text-gray-800">
+                My whole story on Read.cv
+              </a>
+            </div>
+          </div>
+        </div> */}
+        <div className="flex items-center justify-center gap-4 py-20">
+          <h2 className="text-7xl font-light">Thank you</h2>
+          <span className="text-6xl">🙏</span>
         </div>
       </div>
     </div>
