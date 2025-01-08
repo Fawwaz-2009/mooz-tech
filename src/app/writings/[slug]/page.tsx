@@ -1,14 +1,14 @@
-import { getWritingBySlug } from "@/lib/mdx";
+import { getWritingBySlug } from '@/lib/mdx';
 // import { getWritingBySlug, getAllWritings } from "@/lib/mdx";
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import { ArrowLeft, Clock } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
-import styles from "./writing-body.module.css";
-import { WritingInteractions } from "@/components/writing/writing-interactions";
-import { getCounters, incrementViews } from "./actions";
-import { Button } from "@/components/ui/button";
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { ArrowLeft, Clock } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import Image from 'next/image';
+import styles from './writing-body.module.css';
+import { WritingInteractions } from '@/components/writing/writing-interactions';
+import { getCounters, incrementViews } from './actions';
+import { Button } from '@/components/ui/button';
 
 interface WritingPageProps {
   params: Promise<{
@@ -18,7 +18,9 @@ interface WritingPageProps {
 
 export default async function WritingPage({ params }: WritingPageProps) {
   const { slug } = await params;
-  const { meta, content } = await getWritingBySlug(slug).catch(() => notFound());
+  const { meta, content } = await getWritingBySlug(slug).catch(() =>
+    notFound()
+  );
 
   // Increment view count and get counters
   await incrementViews(slug);
@@ -35,11 +37,14 @@ export default async function WritingPage({ params }: WritingPageProps) {
   //     .slice(0, 3); // Limit to 3 related posts
 
   return (
-    <article className="container max-w-2xl mx-auto px-4 md:px-8 py-8 md:py-12">
+    <article className="container mx-auto max-w-2xl px-4 py-8 md:px-8 md:py-12">
       {/* Navigation */}
       <div className="mb-16">
-        <div className="flex items-center gap-4 mb-8">
-          <Link href="/writings" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+        <div className="mb-8 flex items-center gap-4">
+          <Link
+            href="/writings"
+            className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+          >
             <ArrowLeft className="h-4 w-4" />
             <span>Back to writings</span>
           </Link>
@@ -48,16 +53,16 @@ export default async function WritingPage({ params }: WritingPageProps) {
 
       {/* Article Header */}
       <header className="mb-16">
-        <h1 className="font-bold text-4xl text-heading-dark dark:text-purple-300 flex justify-center items-center rounded transition-colors [text-shadow:0.125rem_0.125rem_0_#fce1a8] dark:[text-shadow:none] mb-8">
+        <h1 className="text-heading-dark mb-8 flex items-center justify-center rounded text-4xl font-bold transition-colors [text-shadow:0.125rem_0.125rem_0_#fce1a8] dark:text-purple-300 dark:[text-shadow:none]">
           {meta.title}
         </h1>
 
-        <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground mb-8">
+        <div className="mb-8 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
           <time dateTime={meta.publishedAt}>
-            {new Date(meta.publishedAt).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
+            {new Date(meta.publishedAt).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
             })}
           </time>
           <span>·</span>
@@ -80,13 +85,23 @@ export default async function WritingPage({ params }: WritingPageProps) {
 
         {meta.coverImage && (
           <div className="mb-8">
-            <Image src={meta.coverImage} alt={`Cover Image for ${meta.title}`} className="rounded-lg shadow-sm" width={1300} height={630} priority />
+            <Image
+              src={meta.coverImage}
+              alt={`Cover Image for ${meta.title}`}
+              className="rounded-lg shadow-sm"
+              width={1300}
+              height={630}
+              priority
+            />
           </div>
         )}
       </header>
 
       {/* Article Content */}
-      <div className={styles.markdown} dangerouslySetInnerHTML={{ __html: content }} />
+      <div
+        className={styles.markdown}
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
 
       {/* Interactions */}
       <WritingInteractions
@@ -127,7 +142,7 @@ export default async function WritingPage({ params }: WritingPageProps) {
         <p>If you enjoyed reading this, checkout my other writings:</p>
         <Button variant="outline" asChild>
           <Link href="/writings">
-            <ArrowLeft className="h-4 w-4 mr-2" />
+            <ArrowLeft className="mr-2 h-4 w-4" />
             all writings
           </Link>
         </Button>
