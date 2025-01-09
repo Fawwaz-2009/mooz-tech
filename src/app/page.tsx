@@ -8,7 +8,9 @@ const Navigation = () => (
     <Link href="/">
       <img src="/mooz-logo2.jpg" alt="Logo" className="h-16 w-auto rounded-full" />
     </Link>
-    <Link href="/writings">Writings</Link>
+    <Button asChild>
+      <Link href="https://cal.com/fawwaz/dev">Book a call</Link>
+    </Button>
   </nav>
 );
 
@@ -22,7 +24,7 @@ const Hero = () => (
 );
 
 const ProfileCard = () => (
-  <div className="rounded-3xl bg-[#f7f7f9] p-6 pb-7 relative">
+  <div className="rounded-3xl bg-[#f7f7f9] p-6 pb-7 relative shadow-md">
     <div className="flex flex-col gap-4 md:grid md:grid-rows-2 items-between h-full">
       <div className="flex items-start gap-4">
         <div className="flex flex-col gap-2">
@@ -44,7 +46,7 @@ const ProfileCard = () => (
 );
 
 const WritingsCard = () => (
-  <div className="h-80 w-full rounded-3xl bg-red-200 overflow-hidden relative md:col-span-2">
+  <div className="h-80 w-full rounded-3xl bg-red-200 overflow-hidden relative md:col-span-2 shadow-md">
     <img src="/writings-2.png" alt="" className="h-full w-full object-cover brightness-[0.75]" />
     <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-black/50 to-transparent"></div>
     <div className="absolute bottom-0 left-0 w-full h-full flex flex-col justify-end p-4">
@@ -55,7 +57,7 @@ const WritingsCard = () => (
 );
 
 const BooksCard = () => (
-  <div className="h-80 w-full rounded-3xl bg-[#f2f2f2] overflow-hidden relative">
+  <div className="h-80 w-full rounded-3xl bg-[#f2f2f2] overflow-hidden relative shadow-md">
     <div className="relative w-full h-48 flex justify-center">
       <div className="absolute transform rotate-[-8deg] translate-y-4 translate-x-4">
         <Image src="/books/fooled-by-randomness.png" alt="Fooled by Randomness" width={140} height={180} className="rounded shadow-lg" />
@@ -78,7 +80,7 @@ const BooksCard = () => (
 );
 
 const LovableAppsCard = () => (
-  <div className="h-80 w-full rounded-3xl bg-red-200 overflow-hidden relative">
+  <div className="h-80 w-full rounded-3xl bg-red-200 overflow-hidden relative shadow-md">
     <img src="/love-apps.jpg" alt="" className="h-full w-full object-cover brightness-[0.75]" />
     <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-black/50 to-transparent"></div>
     <div className="absolute bottom-0 left-0 w-full h-full flex flex-col justify-end p-4">
@@ -89,38 +91,38 @@ const LovableAppsCard = () => (
 );
 
 const BookCallCard = () => (
-  <div className="h-96 rounded-3xl bg-yellow-200 relative">
+  <Link href="https://cal.com/fawwaz/dev" target="_blank" rel="noopener noreferrer" className="h-96 rounded-3xl bg-yellow-200 relative shadow-md">
     <p className="text-4xl font-semibold text-center pt-20 font-mono">Book a call with me</p>
     <div className="absolute bottom-0 w-full flex justify-center h-48 pb-8">
       <img src="/cal.png" alt="Calendar" className="h-48 w-auto" />
     </div>
-  </div>
+  </Link>
 );
 
 const ContactCard = () => (
-  <div className="h-96 rounded-3xl bg-slate-200 grid gird-cols-1 items-center justify-center text-center">
-    <div className="flex flex-col gap-10">
+  <div className="h-96 rounded-3xl bg-slate-200 grid gird-cols-1 items-center justify-center text-center shadow-md">
+    <div className="flex flex-col gap-10 items-center">
       <p className="text-4xl font-semibold font-mono">Contact Me</p>
       <p className="text-muted-foreground text-2xl">fawwaz@mooz.tech</p>
-      <ul className="flex gap-4">
+      <ul className="flex gap-4 w-full justify-between w-60">
         <li>
           <Button variant="ghost" size="icon" asChild>
             <a href="mailto:fawwaz@mooz.tech">
-              <Mail className="h-5 w-5" />
+              <Mail className="!h-7 !w-7" />
             </a>
           </Button>
         </li>
         <li>
           <Button variant="ghost" size="icon" asChild>
             <a href="https://linkedin.com/in/fawwaz-mooz">
-              <Linkedin className="h-5 w-5" />
+              <Linkedin className="!h-7 !w-7" />
             </a>
           </Button>
         </li>
         <li>
           <Button variant="ghost" size="icon" asChild>
             <a href="https://wa.me/6281234567890">
-              <MessageCircle className="h-5 w-5" />
+              <MessageCircle className="!h-7 !w-7" />
             </a>
           </Button>
         </li>
@@ -151,8 +153,8 @@ export default function Home() {
         </div>
 
         <div className="flex items-center justify-center gap-4 py-20">
-          <h2 className="text-7xl font-light">Thank you</h2>
-          <span className="text-6xl">🙏</span>
+          <h2 className="text-4xl md:text-7xl font-light">Thank you</h2>
+          <span className="text-4xl md:text-6xl">🙏</span>
         </div>
       </div>
     </div>
