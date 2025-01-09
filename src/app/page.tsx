@@ -46,14 +46,14 @@ const ProfileCard = () => (
 );
 
 const WritingsCard = () => (
-  <div className="h-80 w-full rounded-3xl bg-red-200 overflow-hidden relative md:col-span-2 shadow-md">
+  <Link href="/writings" className="h-80 w-full rounded-3xl bg-red-200 overflow-hidden relative md:col-span-2 shadow-md">
     <img src="/writings-2.png" alt="" className="h-full w-full object-cover brightness-[0.75]" />
     <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-black/50 to-transparent"></div>
     <div className="absolute bottom-0 left-0 w-full h-full flex flex-col justify-end p-4">
       <h3 className="text-2xl font-bold text-white">Writings</h3>
       <p className="text-white">My thoughts on building products</p>
     </div>
-  </div>
+  </Link>
 );
 
 const BooksCard = () => (
