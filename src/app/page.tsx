@@ -63,7 +63,7 @@ const ProfileCard = () => (
 const WritingsCard = () => (
   <Link
     href="/writings"
-    className="relative h-80 w-full overflow-hidden rounded-3xl bg-red-200 shadow-md md:col-span-2"
+    className="relative h-80 w-full overflow-hidden rounded-3xl bg-red-200 shadow-md"
   >
     <img
       src="/writings-2.png"
@@ -215,6 +215,29 @@ const BooksCard = () => (
   </Dialog>
 );
 
+const ChallengesCard = () => (
+  <Link
+    href="/challenges"
+    className="relative h-80 w-full overflow-hidden rounded-3xl bg-purple-200 shadow-md"
+  >
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div className="group relative w-48 cursor-pointer">
+        <div className="bg-white/80 p-4 text-center backdrop-blur-sm">
+          <span className="text-lg">Hover me to reveal</span>
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center bg-black/80 opacity-0 transition-opacity group-hover:opacity-100">
+          <span className="text-lg text-white">Spoiler revealed!</span>
+        </div>
+      </div>
+    </div>
+    <div className="absolute bottom-0 left-0 h-full w-full bg-gradient-to-t from-black/50 to-transparent"></div>
+    <div className="absolute bottom-0 left-0 flex h-full w-full flex-col justify-end p-4">
+      <h3 className="text-2xl font-bold text-white">Daily Challenges</h3>
+      <p className="text-white">Learn Tailwind CSS through daily challenges</p>
+    </div>
+  </Link>
+);
+
 const LovableAppsCard = () => (
   <div className="relative h-80 w-full overflow-hidden rounded-3xl bg-red-200 shadow-md">
     <img
@@ -289,6 +312,7 @@ export default function Home() {
           <ProfileCard />
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:grid-rows-2">
             <WritingsCard />
+            <ChallengesCard />
             <BooksCard />
             <LovableAppsCard />
           </div>
