@@ -40,7 +40,13 @@ export default function ChallengesPage() {
           <Link key={challenge.id} href={`/challenges/${challenge.id}`}>
             <Card className="h-full transition-all hover:scale-[1.02]">
               <CardHeader className="mb-8 p-0">
-                <div className="flex h-72 items-center justify-center overflow-hidden rounded-lg border bg-muted/50 p-4">
+                <div
+                  className="flex h-72 items-center justify-center overflow-hidden rounded-lg border bg-muted/50 bg-slate-700 p-4"
+                  style={{
+                    backgroundImage: `linear-gradient(90deg, rgba(132, 132, 132, .2) 1px, transparent 0), linear-gradient(180deg, rgba(132, 132, 132, .2) 1px, transparent 0)`,
+                    backgroundSize: '25px 25px',
+                  }}
+                >
                   <div
                     dangerouslySetInnerHTML={{ __html: challenge.previewCode }}
                   />

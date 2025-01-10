@@ -59,13 +59,15 @@ export default function ChallengePage({ params }: Props) {
       </div>
       <div className="hidden md:block">
         <div className="mb-8">
-          <Link
-            href="/challenges"
-            className="mb-4 inline-flex items-center gap-2 text-muted-foreground hover:text-foreground"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to challenges
-          </Link>
+          <Button variant={'ghost'} asChild>
+            <Link
+              href="/challenges"
+              className="mb-4 inline-flex items-center gap-2 text-muted-foreground hover:text-foreground"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to challenges
+            </Link>
+          </Button>
           <div className="mb-2 flex items-center gap-2">
             <h1 className="text-4xl font-bold">{challenge.title}</h1>
             <Badge
