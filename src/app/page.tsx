@@ -1,12 +1,22 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import Link from "next/link";
-import { Mail, Linkedin, MessageCircle } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import Link from 'next/link';
+import { Mail, Linkedin, MessageCircle } from 'lucide-react';
 
 const Navigation = () => (
   <nav className="mx-auto flex max-w-5xl items-center justify-between p-4">
     <Link href="/">
-      <img src="/mooz-logo2.jpg" alt="Logo" className="h-16 w-auto rounded-full" />
+      <img
+        src="/mooz-logo2.jpg"
+        alt="Logo"
+        className="h-16 w-auto rounded-full"
+      />
     </Link>
     <Button asChild>
       <Link href="https://cal.com/fawwaz/dev">Book a call</Link>
@@ -16,19 +26,24 @@ const Navigation = () => (
 
 const Hero = () => (
   <div className="flex flex-col gap-4">
-    <h1 className="text-left w-80 md:w-auto md:text-center font-mono text-3xl md:text-5xl font-light leading-normal">
-      I develop <span className="font-bold">minimalist</span> but <span className="font-bold">mighty</span> apps for the web,{" "}
+    <h1 className="w-80 text-left font-mono text-3xl font-light leading-normal md:w-auto md:text-center md:text-5xl">
+      I develop <span className="font-bold">minimalist</span> but{' '}
+      <span className="font-bold">mighty</span> apps for the web,{' '}
       <span className="font-bold">FAST</span>.
     </h1>
   </div>
 );
 
 const ProfileCard = () => (
-  <div className="rounded-3xl bg-[#f7f7f9] p-6 pb-7 relative shadow-md">
-    <div className="flex flex-col gap-4 md:grid md:grid-rows-2 items-between h-full">
+  <div className="relative rounded-3xl bg-[#f7f7f9] p-6 pb-7 shadow-md">
+    <div className="items-between flex h-full flex-col gap-4 md:grid md:grid-rows-2">
       <div className="flex items-start gap-4">
         <div className="flex flex-col gap-2">
-          <img src="/fawwaz-avatar.png" alt="Avatar" className="h-16 w-16 rounded-full bg-orange-300" />
+          <img
+            src="/fawwaz-avatar.png"
+            alt="Avatar"
+            className="h-16 w-16 rounded-full bg-orange-300"
+          />
           <h2 className="text-2xl font-bold">Fawwaz Alharbi</h2>
           <p className="text-gray-600">Builder of apps, based in Bali</p>
           <div className="flex items-center gap-1">
@@ -37,7 +52,7 @@ const ProfileCard = () => (
           </div>
         </div>
       </div>
-      <p className="text-xl text-gray-700 mt-4">
+      <p className="mt-4 text-xl text-gray-700">
         {` Hi I'm the guy behind Mooz and with 9+ years of turning complex problems into elegant solutions, I build products that excite me—and hopefully
         you too. Let's connect if you're nearby! 🌊`}
       </p>
@@ -46,44 +61,169 @@ const ProfileCard = () => (
 );
 
 const WritingsCard = () => (
-  <Link href="/writings" className="h-80 w-full rounded-3xl bg-red-200 overflow-hidden relative md:col-span-2 shadow-md">
-    <img src="/writings-2.png" alt="" className="h-full w-full object-cover brightness-[0.75]" />
-    <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-black/50 to-transparent"></div>
-    <div className="absolute bottom-0 left-0 w-full h-full flex flex-col justify-end p-4">
+  <Link
+    href="/writings"
+    className="relative h-80 w-full overflow-hidden rounded-3xl bg-red-200 shadow-md md:col-span-2"
+  >
+    <img
+      src="/writings-2.png"
+      alt=""
+      className="h-full w-full object-cover brightness-[0.75]"
+    />
+    <div className="absolute bottom-0 left-0 h-full w-full bg-gradient-to-t from-black/50 to-transparent"></div>
+    <div className="absolute bottom-0 left-0 flex h-full w-full flex-col justify-end p-4">
       <h3 className="text-2xl font-bold text-white">Writings</h3>
       <p className="text-white">My thoughts on building products</p>
     </div>
   </Link>
 );
 
+const books = [
+  {
+    title: 'Refactoring UI',
+    description:
+      'A comprehensive guide that bridges the gap between design and development, offering practical tips and insights to improve user interfaces without relying on a design background.',
+    ImageSrc: '/books/refactoring-ui.png',
+    amazonUrl: 'https://www.refactoringui.com/',
+  },
+  {
+    title: 'This Is Marketing',
+    description:
+      "Seth Godin's insightful book that redefines marketing, emphasizing the importance of empathy, connection, and making meaningful change over traditional advertising tactics.",
+    ImageSrc: '/books/this-is-marketing.png',
+    amazonUrl: 'https://www.amazon.com/dp/0525540830',
+  },
+  {
+    title: 'Fooled by Randomness',
+    description:
+      "Nassim Nicholas Taleb's exploration of the hidden role of chance in life and markets, challenging the perception of skill and luck in the world of finance and beyond.",
+    ImageSrc: '/books/fooled-by-randomness.png',
+    amazonUrl: 'https://www.amazon.com/dp/0812975219',
+  },
+  {
+    title:
+      'Sprint: How to Solve Big Problems and Test New Ideas in Just Five Days',
+    description:
+      'Authored by Jake Knapp, this book introduces the design sprint process, a unique five-day method for solving tough problems, proven at more than 100 companies.',
+    ImageSrc: '/books/sprint.png',
+    amazonUrl:
+      'https://www.amazon.com/Sprint-Solve-Problems-Test-Ideas/dp/150112174X',
+  },
+  {
+    title: 'Zag: The Number One Strategy of High-Performance Brands',
+    description:
+      "Marty Neumeier's guide on radical differentiation, providing 17 steps for designing difference into your brand to outmaneuver the competition.",
+    ImageSrc: '/books/zag.png',
+    amazonUrl:
+      'https://www.amazon.com/Zag-Number-Strategy-High-Performance-Brands/dp/0321426770',
+  },
+  {
+    title:
+      'The Mom Test: How to Talk to Customers and Learn If Your Business is a Good Idea When Everyone is Lying to You',
+    description:
+      "Rob Fitzpatrick's practical guide on how to effectively communicate with customers to validate business ideas without being misled.",
+    ImageSrc: '/books/the-mom-test.png',
+    amazonUrl:
+      'https://www.amazon.com/Mom-Test-Customers-Business-Everyone/dp/1492180742',
+  },
+  {
+    title: 'Dune',
+    description:
+      "Frank Herbert's science fiction masterpiece set on the desert planet Arrakis, exploring themes of politics, religion, and human nature.",
+    ImageSrc: '/books/dune.png',
+    amazonUrl: 'https://www.amazon.com/Dune-Frank-Herbert/dp/0441172717',
+  },
+  {
+    title:
+      'The Brand Gap: How to Bridge the Distance Between Business Strategy and Design',
+    description:
+      "Marty Neumeier's essential primer on brand-building, illustrating how to close the gap between business strategy and design.",
+    ImageSrc: '/books/the-brand-gap.png',
+    amazonUrl:
+      'https://www.amazon.com/Brand-Gap-Distance-Business-Strategy/dp/0321348109',
+  },
+];
+
 const BooksCard = () => (
-  <div className="h-80 w-full rounded-3xl bg-[#f2f2f2] overflow-hidden relative shadow-md">
-    <div className="relative w-full h-48 flex justify-center">
-      <div className="absolute transform rotate-[-8deg] translate-y-4 translate-x-4">
-        <Image src="/books/fooled-by-randomness.png" alt="Fooled by Randomness" width={140} height={180} className="rounded shadow-lg" />
+  <Dialog>
+    <DialogTrigger asChild>
+      <div className="relative h-80 w-full cursor-pointer overflow-hidden rounded-3xl bg-[#f2f2f2] shadow-md transition-colors hover:bg-[#e8e8e8]">
+        <div className="relative flex h-48 w-full justify-center">
+          {[...books].reverse().map((book, index) => (
+            <div
+              key={book.title}
+              className={`absolute transform ${
+                index === 0
+                  ? 'translate-x-4 translate-y-4 rotate-[-8deg]'
+                  : index === 1
+                    ? 'translate-x-8 rotate-[-4deg]'
+                    : '-translate-x-2 -translate-y-2 rotate-[4deg]'
+              }`}
+            >
+              <img
+                src={book.ImageSrc}
+                alt={book.title}
+                className="h-[180px] w-[140px] rounded object-cover shadow-lg"
+              />
+            </div>
+          ))}
+        </div>
+        <div className="absolute bottom-0 left-0 flex h-full w-full flex-col justify-end p-4">
+          <h3 className="text-2xl font-bold">Books</h3>
+          <p>{`Books I've read and recommend`}</p>
+        </div>
       </div>
-      <div className="absolute transform translate-x-8 rotate-[-4deg]">
-        <Image src="/books/this-is-marketing.png" alt="This is Marketing" width={140} height={180} className="rounded shadow-lg" />
+    </DialogTrigger>
+    <DialogContent className="max-h-[80vh] max-w-4xl overflow-y-auto">
+      <DialogHeader>
+        <DialogTitle className="mb-4 text-2xl">Recommended Books</DialogTitle>
+      </DialogHeader>
+      <div className="grid grid-cols-1 gap-8">
+        {books.map((book) => (
+          <div
+            key={book.title}
+            className="flex flex-col gap-6 rounded-xl bg-slate-50 p-6 md:flex-row"
+          >
+            <div className="h-64 w-full flex-shrink-0 md:flex md:w-48 md:items-center md:justify-center">
+              <img
+                src={book.ImageSrc}
+                alt={book.title}
+                className="h-full w-auto rounded-lg object-cover shadow-md"
+              />
+            </div>
+            <div className="flex flex-col gap-4">
+              <h3 className="text-2xl font-semibold">{book.title}</h3>
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                {book.description}
+              </p>
+              <div className="mt-auto">
+                <Button asChild>
+                  <Link
+                    href={book.amazonUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Read it
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
-      <div className="absolute transform rotate-[4deg] -translate-y-2 -translate-x-2">
-        <Image src="/books/sprint.png" alt="Sprint" width={140} height={180} className="rounded shadow-lg" />
-      </div>
-      <div className="absolute transform rotate-[-4deg] translate-y-2 translate-x-2">
-        <Image src="/books/refactoring-ui.png" alt="Refactoring UI" width={140} height={180} className="rounded shadow-lg" />
-      </div>
-    </div>
-    <div className="absolute bottom-0 left-0 w-full h-full flex flex-col justify-end p-4">
-      <h3 className="text-2xl font-bold">Books</h3>
-      <p>{`Books I've read and recommend`}</p>
-    </div>
-  </div>
+    </DialogContent>
+  </Dialog>
 );
 
 const LovableAppsCard = () => (
-  <div className="h-80 w-full rounded-3xl bg-red-200 overflow-hidden relative shadow-md">
-    <img src="/love-apps.jpg" alt="" className="h-full w-full object-cover brightness-[0.75]" />
-    <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-black/50 to-transparent"></div>
-    <div className="absolute bottom-0 left-0 w-full h-full flex flex-col justify-end p-4">
+  <div className="relative h-80 w-full overflow-hidden rounded-3xl bg-red-200 shadow-md">
+    <img
+      src="/love-apps.jpg"
+      alt=""
+      className="h-full w-full object-cover brightness-[0.75]"
+    />
+    <div className="absolute bottom-0 left-0 h-full w-full bg-gradient-to-t from-black/50 to-transparent"></div>
+    <div className="absolute bottom-0 left-0 flex h-full w-full flex-col justify-end p-4">
       <h3 className="text-2xl font-bold text-white">Lovable Apps</h3>
       <p className="text-white">(coming)</p>
     </div>
@@ -91,20 +231,27 @@ const LovableAppsCard = () => (
 );
 
 const BookCallCard = () => (
-  <Link href="https://cal.com/fawwaz/dev" target="_blank" rel="noopener noreferrer" className="h-96 rounded-3xl bg-yellow-200 relative shadow-md">
-    <p className="text-4xl font-semibold text-center pt-20 font-mono">Book a call with me</p>
-    <div className="absolute bottom-0 w-full flex justify-center h-48 pb-8">
+  <Link
+    href="https://cal.com/fawwaz/dev"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="relative h-96 rounded-3xl bg-yellow-200 shadow-md"
+  >
+    <p className="pt-20 text-center font-mono text-4xl font-semibold">
+      Book a call with me
+    </p>
+    <div className="absolute bottom-0 flex h-48 w-full justify-center pb-8">
       <img src="/cal.png" alt="Calendar" className="h-48 w-auto" />
     </div>
   </Link>
 );
 
 const ContactCard = () => (
-  <div className="h-96 rounded-3xl bg-slate-200 grid gird-cols-1 items-center justify-center text-center shadow-md">
-    <div className="flex flex-col gap-10 items-center">
-      <p className="text-4xl font-semibold font-mono">Contact Me</p>
-      <p className="text-muted-foreground text-2xl">fawwaz@mooz.tech</p>
-      <ul className="flex gap-4 w-full justify-between w-60">
+  <div className="gird-cols-1 grid h-96 items-center justify-center rounded-3xl bg-slate-200 text-center shadow-md">
+    <div className="flex flex-col items-center gap-10">
+      <p className="font-mono text-4xl font-semibold">Contact Me</p>
+      <p className="text-2xl text-muted-foreground">fawwaz@mooz.tech</p>
+      <ul className="flex w-60 w-full justify-between gap-4">
         <li>
           <Button variant="ghost" size="icon" asChild>
             <a href="mailto:fawwaz@mooz.tech">
@@ -135,7 +282,7 @@ export default function Home() {
   return (
     <div className="">
       <Navigation />
-      <div className="mx-auto grid max-w-5xl grid-cols-1 justify-center gap-24 md:gap-32 p-4 pt-20 md:pt-40">
+      <div className="mx-auto grid max-w-5xl grid-cols-1 justify-center gap-24 p-4 pt-20 md:gap-32 md:pt-40">
         <Hero />
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr,2fr]">
@@ -153,7 +300,7 @@ export default function Home() {
         </div>
 
         <div className="flex items-center justify-center gap-4 py-20">
-          <h2 className="text-4xl md:text-7xl font-light">Thank you</h2>
+          <h2 className="text-4xl font-light md:text-7xl">Thank you</h2>
           <span className="text-4xl md:text-6xl">🙏</span>
         </div>
       </div>
