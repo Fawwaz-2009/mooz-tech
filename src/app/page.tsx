@@ -268,7 +268,7 @@ const ContactCard = () => (
         </li>
         <li>
           <Button variant="ghost" size="icon" asChild>
-            <a href="https://wa.me/6281234567890">
+            <a href="https://wa.me/6287784281688">
               <MessageCircle className="!h-7 !w-7" />
             </a>
           </Button>
