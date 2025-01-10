@@ -27,8 +27,7 @@ function groupWritingsByYear(writings: ReturnType<typeof getAllWritings>) {
 export default function WritingsPage() {
   const writings = getAllWritings();
   const writingsByYear = groupWritingsByYear(writings);
-  // const hasWritings = writings.length > 0;
-  const hasWritings = false;
+  const hasWritings = writings.length > 0;
 
   return (
     <div className="container mx-auto max-w-4xl px-4 py-8 md:px-8 md:py-12">
