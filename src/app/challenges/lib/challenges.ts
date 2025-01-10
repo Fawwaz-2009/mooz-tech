@@ -16,6 +16,7 @@ export interface Challenge {
     css: string;
   };
   hints: string[];
+  reference?: string;
 }
 
 export const challenges: Challenge[] = [
@@ -68,5 +69,6 @@ export const challenges: Challenge[] = [
       'Combine opacity-0 and group-hover:opacity-100 for the reveal effect',
       'Add transition-opacity for smooth animation',
     ],
+    reference: 'https://scrimba.com/css-challenges-c02p/~01',
   },
 ];

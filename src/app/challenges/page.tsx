@@ -30,8 +30,8 @@ export default function ChallengesPage() {
           Daily CSS Challenges
         </h1>
         <p className="text-lg text-muted-foreground">
-          Learn Tailwind CSS through daily challenges. Each challenge focuses on
-          specific CSS concepts and features.
+          These are collection of fun design challenges, that I found and try to
+          recreate. When I can, I try to do them using tailwind.
         </p>
       </div>
 
