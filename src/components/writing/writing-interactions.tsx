@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ThumbsUp, Heart, Trophy, Share2 } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
-import { incrementCounter } from "@/app/writings/[slug]/actions";
+import { incrementCounter } from "@/app/writings/actions";
 import confetti from "canvas-confetti";
 import { Loader2 } from "lucide-react";
 

@@ -1,26 +1,21 @@
-import { getWritingBySlug } from '@/lib/mdx';
-// import { getWritingBySlug, getAllWritings } from "@/lib/mdx";
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Clock } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
-import styles from './writing-body.module.css';
 import { WritingInteractions } from '@/components/writing/writing-interactions';
-import { getCounters, incrementViews } from './actions';
+import { getCounters, incrementViews } from '@/app/writings/actions';
 import { Button } from '@/components/ui/button';
+import { contentDirectory, getPosts } from '@/lib/posts';
 
-interface WritingPageProps {
-  params: Promise<{
-    slug: string;
-  }>;
-}
 
-export default async function WritingPage({ params }: WritingPageProps) {
-  const { slug } = await params;
-  const { meta, content } = await getWritingBySlug(slug).catch(() =>
-    notFound()
-  );
+export default async function WritingPage({children, slug}: {children: React.ReactNode, slug: string}) {
+  const posts = await getPosts(contentDirectory);
+  const post = posts.find((post) => post.url.includes(slug));
+  if (!post) {
+    notFound();
+  }
+  const meta = post;
 
   // Increment view count and get counters
   await incrementViews(slug);
@@ -98,10 +93,7 @@ export default async function WritingPage({ params }: WritingPageProps) {
       </header>
 
       {/* Article Content */}
-      <div
-        className={styles.markdown}
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
+      {children}
 
       {/* Interactions */}
       <WritingInteractions

@@ -1,9 +1,9 @@
-import { getAllWritings } from '@/lib/mdx';
 import { WritingsHeader } from '@/components/writing/writings-header';
 import { WritingCard } from '@/components/writing/writing-card';
 import { CalendarDays, Sparkles } from 'lucide-react';
+import { contentDirectory, getPosts, Post } from '@/lib/posts';
 
-function groupWritingsByYear(writings: ReturnType<typeof getAllWritings>) {
+function groupWritingsByYear(writings: Post[]) {
   const groups = writings.reduce(
     (acc, writing) => {
       const year = new Date(writing.publishedAt).getFullYear();
@@ -24,9 +24,10 @@ function groupWritingsByYear(writings: ReturnType<typeof getAllWritings>) {
     }));
 }
 
-export default function WritingsPage() {
-  const writings = getAllWritings();
+export default async function WritingsPage() {
+  const writings = await getPosts(contentDirectory);
   const writingsByYear = groupWritingsByYear(writings);
+  console.log(writings, "9999");
   const hasWritings = writings.length > 0;
 
   return (
@@ -40,7 +41,7 @@ export default function WritingsPage() {
               <h2 className="mb-8 text-2xl font-bold">{year}</h2>
               <div>
                 {posts.map((writing) => (
-                  <WritingCard key={writing.slug} writing={writing} />
+                  <WritingCard key={writing.url} writing={writing} />
                 ))}
               </div>
             </section>

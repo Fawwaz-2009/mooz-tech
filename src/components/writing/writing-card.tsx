@@ -1,14 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
-import { type WritingMeta } from "@/lib/mdx";
+import { Post } from "@/lib/posts";
 
 interface WritingCardProps {
-  writing: WritingMeta;
+  writing: Post;
 }
 
 export function WritingCard({ writing }: WritingCardProps) {
   return (
-    <Link href={`/writings/${writing.slug}`} className="group block relative rounded-lg -mx-4 md:-mx-6 px-4 md:px-6 py-6 transition-colors hover:bg-muted/50">
+    <Link href={writing.url} className="group block relative rounded-lg -mx-4 md:-mx-6 px-4 md:px-6 py-6 transition-colors hover:bg-muted/50">
       <article className="grid md:grid-cols-5 gap-4 md:gap-8 items-start">
         {writing.coverImage && (
           <div className="md:col-span-2 overflow-hidden rounded-lg">

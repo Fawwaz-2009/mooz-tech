@@ -1,9 +1,9 @@
-import { getWritingsByTag, getAllTags } from "@/lib/mdx";
 import { WritingCard } from "@/components/writing/writing-card";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { notFound } from "next/navigation";
+import { getAllTags, getPostsByTag } from "@/lib/posts";
 
 interface TagPageProps {
   params: Promise<{
@@ -13,8 +13,8 @@ interface TagPageProps {
 
 export default async function TagPage({ params }: TagPageProps) {
     const { tag } = await params;
-  const writings = getWritingsByTag(tag);
-  const allTags = getAllTags();
+  const writings = await getPostsByTag(tag);
+  const allTags = await getAllTags();
   
   if (writings.length === 0) {
     notFound();
@@ -58,7 +58,7 @@ export default async function TagPage({ params }: TagPageProps) {
       {/* Writings List */}
       <div className="space-y-8">
         {writings.map((writing) => (
-          <WritingCard key={writing.slug} writing={writing} />
+          <WritingCard key={writing.url} writing={writing} />
         ))}
       </div>
     </div>
