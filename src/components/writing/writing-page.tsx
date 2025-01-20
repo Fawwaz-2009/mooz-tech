@@ -32,7 +32,7 @@ export default async function WritingPage({children, slug}: {children: React.Rea
   //     .slice(0, 3); // Limit to 3 related posts
 
   return (
-    <article className="container mx-auto max-w-2xl px-4 py-8 md:px-8 md:py-12">
+    <article className="container mx-auto max-w-3xl px-4 py-8 md:px-8 md:py-12">
       {/* Navigation */}
       <div className="mb-16">
         <div className="mb-8 flex items-center gap-4">

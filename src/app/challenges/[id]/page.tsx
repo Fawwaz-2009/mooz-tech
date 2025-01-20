@@ -13,6 +13,7 @@ import { challenges } from '../lib/challenges';
 import { ArrowLeft, Lightbulb } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { use } from 'react';
 
 const difficultyColors = {
   easy: 'bg-green-500',
@@ -21,13 +22,14 @@ const difficultyColors = {
 };
 
 interface Props {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default function ChallengePage({ params }: Props) {
-  const challenge = challenges.find((c) => c.id === params.id);
+  const { id } = use(params);
+  const challenge = challenges.find((c) => c.id === id);
 
   if (!challenge) {
     notFound();
