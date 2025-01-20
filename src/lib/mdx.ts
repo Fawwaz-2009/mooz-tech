@@ -1,108 +1,93 @@
-import { readFileSync, readdirSync } from 'fs';
+import { readdir } from 'fs/promises';
 import path from 'path';
-import matter from 'gray-matter';
+import fs from 'fs/promises';
 import readingTime from 'reading-time';
-import { remark } from 'remark';
-import html from 'remark-html';
-import remarkGfm from 'remark-gfm';
 
-export type WritingMeta = {
+
+export interface Post {
+  url: string;
   title: string;
-  publishedAt: string;
   summary: string;
-  slug: string;
+  publishedAt: string;
+  coverImage: string;
   tags: string[];
+  ogImage: string;
   status: 'draft' | 'published';
-  coverImage?: string;
-  ogImage?: {
-    url: string;
-  };
+//   content: string;
   readingTime: {
     text: string;
     minutes: number;
     time: number;
     words: number;
-  };
-};
-
-const writingsDirectory = path.join(process.cwd(), 'content');
-
-async function markdownToHtml(markdown: string) {
-  const result = await remark()
-    .use(html, { sanitize: false })
-    .use(remarkGfm)
-    .process(markdown);
-  return result.toString();
+  }
 }
 
-export async function getWritingBySlug(slug: string) {
-  const filePath = path.join(writingsDirectory, `${slug}.mdx`);
-  const fileContent = readFileSync(filePath, 'utf8');
+export const contentDirectory = './src/app/writings';
+export const excludedDirectories = ['tags', 'components', 'utils', 'assets'];
 
-  const { data: frontMatter, content } = matter(fileContent);
-  const stats = readingTime(content);
-  const htmlContent = await markdownToHtml(content);
+// TODO make better with effect and schema
+export async function getPosts(directory: string): Promise<Post[]> {
+  // Retrieve slugs from post routes
+  const slugs = (await readdir(directory, { withFileTypes: true }))
+    .filter(dirent => dirent.isDirectory())
+    .filter(dirent => !excludedDirectories.includes(dirent.name));
 
-  return {
-    meta: {
-      ...frontMatter,
-      tags: frontMatter.tags || [],
-      slug,
-      readingTime: stats,
-      ogImage:
-        frontMatter.ogImage ||
-        (frontMatter.coverImage ? { url: frontMatter.coverImage } : undefined),
-    } as WritingMeta,
-    content: htmlContent,
-  };
-}
+  console.log('Found posts in directories:', slugs.map(s => s.name));
 
-export function getAllWritings(includeDrafts = false) {
-  const files = readdirSync(writingsDirectory);
-  const mdxFiles = files.filter((file) => path.extname(file) === '.mdx');
+  // Retrieve metadata and content from MDX files
+  const posts = await Promise.all(
+    slugs.map(async ({ name }) => {
+      const filePath = path.join(directory, name, 'markdown.mdx');
+      const fileContent = await fs.readFile(filePath, 'utf-8');
 
-  return mdxFiles
-    .map((file) => {
-      const filePath = path.join(writingsDirectory, file);
-      const fileContent = readFileSync(filePath, 'utf8');
-      const { data: frontMatter, content } = matter(fileContent);
-      const stats = readingTime(content);
+      // Extract metadata from frontmatter
+      const metadataMatch = fileContent.match(
+        /export const metadata = ({[\s\S]*?});/
+      );
+      if (!metadataMatch) {
+        throw new Error(`No metadata found in ${filePath}`);
+      }
 
-      return {
-        ...frontMatter,
-        tags: frontMatter.tags || [],
-        status: frontMatter.status || 'draft',
-        slug: path.basename(file, '.mdx'),
-        readingTime: stats,
-        ogImage:
-          frontMatter.ogImage ||
-          (frontMatter.coverImage
-            ? { url: frontMatter.coverImage }
-            : undefined),
-      } as WritingMeta;
+      // Safely evaluate the metadata object
+      const metadata = eval(`(${metadataMatch[1]})`);
+
+      // Extract content by removing the metadata section and any imports
+      const content = fileContent
+        .replace(/^---[\s\S]*?---/m, '') // Remove frontmatter if exists
+        .replace(/import[\s\S]*?from.*?;/g, '') // Remove import statements
+        .replace(/export const metadata = {[\s\S]*?};/, '') // Remove metadata export
+        .trim();
+
+      const readingTimeResult = readingTime(content);
+
+      return { 
+        slug: name, 
+        ...metadata,
+        readingTime: readingTimeResult
+      } as Post;
     })
-    .filter((post) => {
-      console.log(post);
-      return includeDrafts || post.status === 'published';
-    })
-    .sort(
-      (a, b) =>
-        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-    );
+  );
+
+  // Sort posts from newest to oldest and filter published ones
+  return posts
+    .sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt))
+    .filter((post) => post.status === 'published');
 }
 
-export function getAllTags() {
-  const writings = getAllWritings();
-  const tags = new Set<string>();
 
-  writings.forEach((writing) => {
-    writing.tags?.forEach((tag) => tags.add(tag));
-  });
 
-  return Array.from(tags).sort();
+export async function getAllTags() {
+    const writings = await getPosts(contentDirectory);
+    const tags = new Set<string>();
+  
+    writings.forEach((writing) => {
+      writing.tags?.forEach((tag) => tags.add(tag));
+    });
+  
+    return Array.from(tags).sort();
 }
 
-export function getWritingsByTag(tag: string) {
-  const writings = getAllWritings();
-  return writings.filter((writing) => writing.tags?.includes(tag));
+export async function getPostsByTag(tag: string): Promise<Post[]> {
+    const allPosts = await getPosts(contentDirectory);
+    return allPosts.filter((post) => post.tags?.includes(tag));
 }

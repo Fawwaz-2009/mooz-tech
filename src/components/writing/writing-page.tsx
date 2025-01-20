@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { WritingInteractions } from '@/components/writing/writing-interactions';
 import { getCounters, incrementViews } from '@/app/writings/actions';
 import { Button } from '@/components/ui/button';
-import { contentDirectory, getPosts } from '@/lib/posts';
+import { contentDirectory, getPosts } from '@/lib/mdx';
 
 
 export default async function WritingPage({children, slug}: {children: React.ReactNode, slug: string}) {

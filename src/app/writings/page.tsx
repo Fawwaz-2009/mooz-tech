@@ -1,7 +1,7 @@
 import { WritingsHeader } from '@/components/writing/writings-header';
 import { WritingCard } from '@/components/writing/writing-card';
 import { CalendarDays, Sparkles } from 'lucide-react';
-import { contentDirectory, getPosts, Post } from '@/lib/posts';
+import { contentDirectory, getPosts, Post } from '@/lib/mdx';
 
 function groupWritingsByYear(writings: Post[]) {
   const groups = writings.reduce(

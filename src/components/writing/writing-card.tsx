@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Post } from "@/lib/posts";
+import { Post } from "@/lib/mdx";
 
 interface WritingCardProps {
   writing: Post;
