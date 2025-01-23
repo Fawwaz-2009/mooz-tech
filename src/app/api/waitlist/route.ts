@@ -41,22 +41,34 @@ export async function OPTIONS() {
     }
   );
 }
+
 export async function POST(request: Request) {
+  console.log('POST /api/waitlist - Starting request processing');
   try {
     const body = await request.json();
+    console.log('Request body:', { ...body, email: body.email?.slice(0,3) + '***' }); // Log sanitized email
+    
     const { email, projectName } = waitlistSchema.parse(body);
+    console.log('Input validation passed');
+    
     const project = await db.query.projects.findFirst({
       where: eq(projects.name, projectName),
     });
+    console.log('Project query result:', { found: !!project, projectName });
+    
     if (!project) {
+      console.log('Project not found:', projectName);
       return new NextResponse(JSON.stringify({ error: 'Project not found' }), {
         status: 404,
         headers: { 'Access-Control-Allow-Origin': 'https://pages.mooz.tech' },
       });
     }
+
     const existingEntry = await db.query.waitlist.findFirst({
       where: eq(waitlist.email, email),
     });
+    console.log('Existing entry check:', { exists: !!existingEntry });
+    
     if (existingEntry) {
       return new NextResponse(
         JSON.stringify({ error: 'Email already in waitlist' }),
@@ -66,11 +78,13 @@ export async function POST(request: Request) {
         }
       );
     }
+
     const totalSignups = await db
       .select({ count: sql<number>`count(*)` })
       .from(waitlist)
       .where(eq(waitlist.projectId, project.id))
       .then((res) => Number(res[0].count));
+    console.log('Current total signups:', totalSignups);
 
     let discountPercentage = 0;
     for (const tier of discountTiers) {
@@ -79,11 +93,17 @@ export async function POST(request: Request) {
         break;
       }
     }
+    console.log('Calculated discount:', { discountPercentage, position: totalSignups + 1 });
+
+    console.log('Inserting into waitlist...');
     await db.insert(waitlist).values({
       email,
       projectId: project.id,
       discountPercentage,
     });
+    console.log('Successfully inserted into waitlist');
+
+    console.log('Sending welcome email...');
     await resend.emails.send({
       from: 'Fadi <hello@mooz.tech>',
       to: email,
@@ -93,6 +113,8 @@ export async function POST(request: Request) {
         discountPercentage,
       }),
     });
+    console.log('Welcome email sent successfully');
+
     return new NextResponse(
       JSON.stringify({
         success: true,
@@ -104,8 +126,15 @@ export async function POST(request: Request) {
         headers: { 'Access-Control-Allow-Origin': 'https://pages.mooz.tech' },
       }
     );
-  } catch (error) {
+  } catch (error: any) {
+    console.error('Error in POST /api/waitlist:', {
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
+    });
+    
     if (error instanceof z.ZodError) {
+      console.log('Validation error:', error.errors);
       return new NextResponse(
         JSON.stringify({ error: 'Invalid input', details: error.errors }),
         {
@@ -114,8 +143,12 @@ export async function POST(request: Request) {
         }
       );
     }
+    
     return new NextResponse(
-      JSON.stringify({ error: 'Internal server error' }),
+      JSON.stringify({ 
+        error: 'Internal server error',
+        details: process.env.NODE_ENV === 'development' ? error.message : undefined 
+      }),
       {
         status: 500,
         headers: { 'Access-Control-Allow-Origin': 'https://pages.mooz.tech' },
