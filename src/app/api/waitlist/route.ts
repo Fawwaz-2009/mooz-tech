@@ -105,7 +105,7 @@ export async function POST(request: Request) {
 
     console.log('Sending welcome email...');
     await resend.emails.send({
-      from: 'Fadi <hello@mooz.tech>',
+      from: 'Fadi <fadi@updates.mooz.tech>',
       to: email,
       subject: `Welcome to Fadi's Waitlist - ${discountPercentage}% Off`,
       react: WaitlistWelcomeEmail({
