@@ -6,11 +6,14 @@ import { eq, sql } from 'drizzle-orm';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
+export const revalidate = 0;
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Define discount tiers more explicitly with total spots
 const discountTiers = [
-  { discount: 70, maxSpots: 5 },
+  { discount: 80, maxSpots: 0 },
+  { discount: 70, maxSpots: 8 },
   { discount: 60, maxSpots: 10 },
   { discount: 50, maxSpots: 45 },
   { discount: 40, maxSpots: 100 },
@@ -46,16 +49,19 @@ export async function POST(request: Request) {
   console.log('POST /api/waitlist - Starting request processing');
   try {
     const body = await request.json();
-    console.log('Request body:', { ...body, email: body.email?.slice(0,3) + '***' }); // Log sanitized email
-    
+    console.log('Request body:', {
+      ...body,
+      email: body.email?.slice(0, 3) + '***',
+    }); // Log sanitized email
+
     const { email, projectName } = waitlistSchema.parse(body);
     console.log('Input validation passed');
-    
+
     const project = await db.query.projects.findFirst({
       where: eq(projects.name, projectName),
     });
     console.log('Project query result:', { found: !!project, projectName });
-    
+
     if (!project) {
       console.log('Project not found:', projectName);
       return new NextResponse(JSON.stringify({ error: 'Project not found' }), {
@@ -68,7 +74,7 @@ export async function POST(request: Request) {
       where: eq(waitlist.email, email),
     });
     console.log('Existing entry check:', { exists: !!existingEntry });
-    
+
     if (existingEntry) {
       return new NextResponse(
         JSON.stringify({ error: 'Email already in waitlist' }),
@@ -93,7 +99,10 @@ export async function POST(request: Request) {
         break;
       }
     }
-    console.log('Calculated discount:', { discountPercentage, position: totalSignups + 1 });
+    console.log('Calculated discount:', {
+      discountPercentage,
+      position: totalSignups + 1,
+    });
 
     console.log('Inserting into waitlist...');
     await db.insert(waitlist).values({
@@ -132,7 +141,7 @@ export async function POST(request: Request) {
       message: error.message,
       stack: error.stack,
     });
-    
+
     if (error instanceof z.ZodError) {
       console.log('Validation error:', error.errors);
       return new NextResponse(
@@ -143,11 +152,12 @@ export async function POST(request: Request) {
         }
       );
     }
-    
+
     return new NextResponse(
-      JSON.stringify({ 
+      JSON.stringify({
         error: 'Internal server error',
-        details: process.env.NODE_ENV === 'development' ? error.message : undefined 
+        details:
+          process.env.NODE_ENV === 'development' ? error.message : undefined,
       }),
       {
         status: 500,
@@ -179,17 +189,22 @@ export async function GET(request: Request) {
       .then((res) => Number(res[0].count));
 
     let currentTier = discountTiers[discountTiers.length - 1];
+    let previousTier = null;
     let spotsLeft = 0;
-    for (const tier of discountTiers) {
-      if (totalSignups < tier.maxSpots) {
-        currentTier = tier;
-        spotsLeft = tier.maxSpots - totalSignups;
+
+    for (let i = 0; i < discountTiers.length; i++) {
+      if (totalSignups < discountTiers[i].maxSpots) {
+        currentTier = discountTiers[i];
+        previousTier = i > 0 ? discountTiers[i - 1] : null;
+        spotsLeft = discountTiers[i].maxSpots - totalSignups;
         break;
       }
     }
+
     return new NextResponse(
       JSON.stringify({
         currentDiscount: currentTier.discount,
+        previousDiscount: previousTier?.discount,
         spotsLeft,
         totalSignups,
       }),
