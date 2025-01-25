@@ -1,4 +1,5 @@
 'use client';
+import LiveCode from '@/components/ui/kibo-ui/live-code';
 import { Sandpack } from '@codesandbox/sandpack-react';
 
 const code = ` 
@@ -27,16 +28,6 @@ export default function PlaygroundPage() {
 }
     `;
 
-const Component = Sandpack as any;
-export default function Playground() {
-  return (
-    <div className="my-8 lg:-mx-48">
-      <Component
-        template="react"
-        files={{
-          '/App.js': `${code}`,
-        }}
-      />
-    </div>
-  );
+export default function Playground({ tabs }: { tabs: ('preview' | 'code')[] }) {
+  return <LiveCode code={code} tabs={tabs || ['preview', 'code']} />;
 }

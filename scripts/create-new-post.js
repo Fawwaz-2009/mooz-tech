@@ -15,9 +15,7 @@ const title = postName.split('-').join(' ');
 const today = format(new Date(), 'yyyy-MM-dd');
 
 const contentDir = path.join(process.cwd(), 'src/app/writings', postName);
-const mdxContent = `import Cool from "./cool"
-import Playground from "./playground"
-
+const mdxContent = `
 export const metadata = {
   title: "${title}",
   publishedAt: "${today}",
@@ -55,12 +53,9 @@ export default async function Page() {
 async function createNewPost() {
   try {
     await fs.mkdir(contentDir, { recursive: true });
-    
-    await Promise.all([
-      fs.writeFile(path.join(contentDir, 'markdown.mdx'), mdxContent),
-      fs.writeFile(path.join(contentDir, 'page.tsx'), pageContent)
-    ]);
-    
+
+    await Promise.all([fs.writeFile(path.join(contentDir, 'markdown.mdx'), mdxContent), fs.writeFile(path.join(contentDir, 'page.tsx'), pageContent)]);
+
     console.log(`✅ Created new post at: src/app/writings/${postName}`);
   } catch (error) {
     console.error('Error creating post:', error);
@@ -68,4 +63,4 @@ async function createNewPost() {
   }
 }
 
-createNewPost(); 
+createNewPost();

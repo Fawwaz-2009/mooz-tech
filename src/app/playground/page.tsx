@@ -1,9 +1,9 @@
 'use client';
-import { Sandpack } from '@codesandbox/sandpack-react';
-
-const code = ` 
-'use client';
 export default function PlaygroundPage() {
+  const isProduction = process.env.NODE_ENV === 'production';
+  if (isProduction) {
+    return <div>EMPTY</div>;
+  }
   return (
     <div
       style={{
@@ -17,26 +17,11 @@ export default function PlaygroundPage() {
       }}
     >
       <div className="playground">Playground</div>
-      <style jsx>{\`
+      <style jsx>{`
         .playground {
           background-color: red;
         }
-      \`}</style>
-    </div>
-  );
-}
-    `;
-
-const Component = Sandpack as any;
-export default function Playground() {
-  return (
-    <div className="my-8 lg:-mx-48">
-      <Component
-        template="react"
-        files={{
-          '/App.js': `${code}`,
-        }}
-      />
+      `}</style>
     </div>
   );
 }

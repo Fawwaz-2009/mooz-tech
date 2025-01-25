@@ -1,22 +1,12 @@
 import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import Link from 'next/link';
 import { Mail, Linkedin, MessageCircle } from 'lucide-react';
 
 const Navigation = () => (
   <nav className="mx-auto flex max-w-5xl items-center justify-between p-4">
     <Link href="/">
-      <img
-        src="/mooz-logo2.jpg"
-        alt="Logo"
-        className="h-16 w-auto rounded-full"
-      />
+      <img src="/mooz-logo2.jpg" alt="Logo" className="h-16 w-auto rounded-full" />
     </Link>
     <Button asChild>
       <Link href="https://cal.com/fawwaz/dev">Book a call</Link>
@@ -27,9 +17,7 @@ const Navigation = () => (
 const Hero = () => (
   <div className="flex flex-col gap-4">
     <h1 className="w-80 text-left font-mono text-3xl font-light leading-normal md:w-auto md:text-center md:text-5xl">
-      I develop <span className="font-bold">minimalist</span> but{' '}
-      <span className="font-bold">mighty</span> apps for the web,{' '}
-      <span className="font-bold">FAST</span>.
+      I develop <span className="font-bold">minimalist</span> but <span className="font-bold">mighty</span> apps for the web, <span className="font-bold">FAST</span>.
     </h1>
   </div>
 );
@@ -39,11 +27,7 @@ const ProfileCard = () => (
     <div className="items-between flex h-full flex-col gap-4 md:grid md:grid-rows-2">
       <div className="flex items-start gap-4">
         <div className="flex flex-col gap-2">
-          <img
-            src="/fawwaz-avatar.png"
-            alt="Avatar"
-            className="h-16 w-16 rounded-full bg-orange-300"
-          />
+          <img src="/fawwaz-avatar.png" alt="Avatar" className="h-16 w-16 rounded-full bg-orange-300" />
           <h2 className="text-2xl font-bold">Fawwaz Alharbi</h2>
           <p className="text-gray-600">Builder of apps, based in Bali</p>
           <div className="flex items-center gap-1">
@@ -61,15 +45,8 @@ const ProfileCard = () => (
 );
 
 const WritingsCard = () => (
-  <Link
-    href="/writings"
-    className="relative h-80 w-full overflow-hidden rounded-3xl bg-red-200 shadow-md"
-  >
-    <img
-      src="/writings-2.png"
-      alt=""
-      className="h-full w-full object-cover brightness-[0.75]"
-    />
+  <Link href="/writings" className="relative h-80 w-full overflow-hidden rounded-3xl bg-red-200 shadow-md">
+    <img src="/writings-2.png" alt="" className="h-full w-full object-cover brightness-[0.75]" />
     <div className="absolute bottom-0 left-0 h-full w-full bg-gradient-to-t from-black/50 to-transparent"></div>
     <div className="absolute bottom-0 left-0 flex h-full w-full flex-col justify-end p-4">
       <h3 className="text-2xl font-bold text-white">Writings</h3>
@@ -101,46 +78,35 @@ const books = [
     amazonUrl: 'https://www.amazon.com/dp/0812975219',
   },
   {
-    title:
-      'Sprint: How to Solve Big Problems and Test New Ideas in Just Five Days',
+    title: 'Sprint: How to Solve Big Problems and Test New Ideas in Just Five Days',
     description:
       'Authored by Jake Knapp, this book introduces the design sprint process, a unique five-day method for solving tough problems, proven at more than 100 companies.',
     ImageSrc: '/books/sprint.png',
-    amazonUrl:
-      'https://www.amazon.com/Sprint-Solve-Problems-Test-Ideas/dp/150112174X',
+    amazonUrl: 'https://www.amazon.com/Sprint-Solve-Problems-Test-Ideas/dp/150112174X',
   },
   {
     title: 'Zag: The Number One Strategy of High-Performance Brands',
-    description:
-      "Marty Neumeier's guide on radical differentiation, providing 17 steps for designing difference into your brand to outmaneuver the competition.",
+    description: "Marty Neumeier's guide on radical differentiation, providing 17 steps for designing difference into your brand to outmaneuver the competition.",
     ImageSrc: '/books/zag.png',
-    amazonUrl:
-      'https://www.amazon.com/Zag-Number-Strategy-High-Performance-Brands/dp/0321426770',
+    amazonUrl: 'https://www.amazon.com/Zag-Number-Strategy-High-Performance-Brands/dp/0321426770',
   },
   {
-    title:
-      'The Mom Test: How to Talk to Customers and Learn If Your Business is a Good Idea When Everyone is Lying to You',
-    description:
-      "Rob Fitzpatrick's practical guide on how to effectively communicate with customers to validate business ideas without being misled.",
+    title: 'The Mom Test: How to Talk to Customers and Learn If Your Business is a Good Idea When Everyone is Lying to You',
+    description: "Rob Fitzpatrick's practical guide on how to effectively communicate with customers to validate business ideas without being misled.",
     ImageSrc: '/books/the-mom-test.png',
-    amazonUrl:
-      'https://www.amazon.com/Mom-Test-Customers-Business-Everyone/dp/1492180742',
+    amazonUrl: 'https://www.amazon.com/Mom-Test-Customers-Business-Everyone/dp/1492180742',
   },
   {
     title: 'Dune',
-    description:
-      "Frank Herbert's science fiction masterpiece set on the desert planet Arrakis, exploring themes of politics, religion, and human nature.",
+    description: "Frank Herbert's science fiction masterpiece set on the desert planet Arrakis, exploring themes of politics, religion, and human nature.",
     ImageSrc: '/books/dune.png',
     amazonUrl: 'https://www.amazon.com/Dune-Frank-Herbert/dp/0441172717',
   },
   {
-    title:
-      'The Brand Gap: How to Bridge the Distance Between Business Strategy and Design',
-    description:
-      "Marty Neumeier's essential primer on brand-building, illustrating how to close the gap between business strategy and design.",
+    title: 'The Brand Gap: How to Bridge the Distance Between Business Strategy and Design',
+    description: "Marty Neumeier's essential primer on brand-building, illustrating how to close the gap between business strategy and design.",
     ImageSrc: '/books/the-brand-gap.png',
-    amazonUrl:
-      'https://www.amazon.com/Brand-Gap-Distance-Business-Strategy/dp/0321348109',
+    amazonUrl: 'https://www.amazon.com/Brand-Gap-Distance-Business-Strategy/dp/0321348109',
   },
 ];
 
@@ -153,18 +119,10 @@ const BooksCard = () => (
             <div
               key={book.title}
               className={`absolute transform ${
-                index === 0
-                  ? 'translate-x-4 translate-y-4 rotate-[-8deg]'
-                  : index === 1
-                    ? 'translate-x-8 rotate-[-4deg]'
-                    : '-translate-x-2 -translate-y-2 rotate-[4deg]'
+                index === 0 ? 'translate-x-4 translate-y-4 rotate-[-8deg]' : index === 1 ? 'translate-x-8 rotate-[-4deg]' : '-translate-x-2 -translate-y-2 rotate-[4deg]'
               }`}
             >
-              <img
-                src={book.ImageSrc}
-                alt={book.title}
-                className="h-[180px] w-[140px] rounded object-cover shadow-lg"
-              />
+              <img src={book.ImageSrc} alt={book.title} className="h-[180px] w-[140px] rounded object-cover shadow-lg" />
             </div>
           ))}
         </div>
@@ -180,29 +138,16 @@ const BooksCard = () => (
       </DialogHeader>
       <div className="grid grid-cols-1 gap-8">
         {books.map((book) => (
-          <div
-            key={book.title}
-            className="flex flex-col gap-6 rounded-xl bg-slate-50 p-6 md:flex-row"
-          >
+          <div key={book.title} className="flex flex-col gap-6 rounded-xl bg-slate-50 p-6 md:flex-row">
             <div className="h-64 w-full flex-shrink-0 md:flex md:w-48 md:items-center md:justify-center">
-              <img
-                src={book.ImageSrc}
-                alt={book.title}
-                className="h-full w-auto rounded-lg object-cover shadow-md"
-              />
+              <img src={book.ImageSrc} alt={book.title} className="h-full w-auto rounded-lg object-cover shadow-md" />
             </div>
             <div className="flex flex-col gap-4">
               <h3 className="text-2xl font-semibold">{book.title}</h3>
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                {book.description}
-              </p>
+              <p className="text-lg leading-relaxed text-muted-foreground">{book.description}</p>
               <div className="mt-auto">
                 <Button asChild>
-                  <Link
-                    href={book.amazonUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <Link href={book.amazonUrl} target="_blank" rel="noopener noreferrer">
                     Read it
                   </Link>
                 </Button>
@@ -216,28 +161,21 @@ const BooksCard = () => (
 );
 
 const ChallengesCard = () => (
-  <Link
-    href="/challenges"
-    className="relative h-80 w-full overflow-hidden rounded-3xl bg-purple-200 shadow-md group"
-  >
+  <Link href="/micro-wonders" className="group relative h-80 w-full overflow-hidden rounded-3xl bg-purple-200 shadow-md">
     <div className="absolute inset-0 flex items-center justify-center text-9xl">
-      <span className="group-hover:animate-bounce">🏋️‍♂️ </span>
+      <span className="duration-500 group-hover:animate-pulse">🔮 </span>
     </div>
     <div className="absolute bottom-0 left-0 h-full w-full bg-gradient-to-t from-black/50 to-transparent"></div>
     <div className="absolute bottom-0 left-0 flex h-full w-full flex-col justify-end p-4">
-      <h3 className="text-2xl font-bold text-white">Design Gym</h3>
-      <p className="text-white">Fun design challenges to improve my and your skills</p>
+      <h3 className="text-2xl font-bold text-white">Micro Wonders</h3>
+      <p className="text-white">A fun and creative space for your interactive experiments</p>
     </div>
   </Link>
 );
 
 const LovableAppsCard = () => (
   <div className="relative h-80 w-full overflow-hidden rounded-3xl bg-red-200 shadow-md">
-    <img
-      src="/love-apps.jpg"
-      alt=""
-      className="h-full w-full object-cover brightness-[0.75]"
-    />
+    <img src="/love-apps.jpg" alt="" className="h-full w-full object-cover brightness-[0.75]" />
     <div className="absolute bottom-0 left-0 h-full w-full bg-gradient-to-t from-black/50 to-transparent"></div>
     <div className="absolute bottom-0 left-0 flex h-full w-full flex-col justify-end p-4">
       <h3 className="text-2xl font-bold text-white">Lovable Apps</h3>
@@ -247,15 +185,8 @@ const LovableAppsCard = () => (
 );
 
 const BookCallCard = () => (
-  <Link
-    href="https://cal.com/fawwaz/dev"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="relative h-96 rounded-3xl bg-yellow-200 shadow-md"
-  >
-    <p className="pt-20 text-center font-mono text-4xl font-semibold">
-      Book a call with me
-    </p>
+  <Link href="https://cal.com/fawwaz/dev" target="_blank" rel="noopener noreferrer" className="relative h-96 rounded-3xl bg-yellow-200 shadow-md">
+    <p className="pt-20 text-center font-mono text-4xl font-semibold">Book a call with me</p>
     <div className="absolute bottom-0 flex h-48 w-full justify-center pb-8">
       <img src="/cal.png" alt="Calendar" className="h-48 w-auto" />
     </div>
