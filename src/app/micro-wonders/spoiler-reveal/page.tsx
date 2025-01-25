@@ -1,17 +1,22 @@
 import { getMicroWonders } from '@/lib/mdx';
 import BlogPost from './markdown.mdx';
 import { MicroWrappersWrappers } from '@/components/micro-wonders/micro-wrappers-wrappers';
+import { notFound } from 'next/navigation';
 
 const Component = BlogPost as any;
 
 const slug = 'spoiler-reveal';
 export default async function Page() {
   const microWonder = await getMicroWonders();
-  console.log(microWonder);
-  const microWonderData = microWonder.find((mw) => mw.slug === slug);
-  console.log(microWonderData);
+  const microWonderDataIndex = microWonder.findIndex((mw) => mw.slug === slug);
+  const microWonderData = microWonder[microWonderDataIndex];
+  const previousMicroWonderUrl = microWonder[microWonderDataIndex - 1]?.slug;
+  const nextMicroWonderUrl = microWonder[microWonderDataIndex + 1]?.slug;
+  if (!microWonderData) {
+    return notFound();
+  }
   return (
-    <MicroWrappersWrappers slug={slug}>
+    <MicroWrappersWrappers metadata={microWonderData} previousMicroWonderUrl={previousMicroWonderUrl} nextMicroWonderUrl={nextMicroWonderUrl}>
       <Component />
     </MicroWrappersWrappers>
   );
