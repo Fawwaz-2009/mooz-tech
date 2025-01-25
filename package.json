@@ -13,7 +13,8 @@
     "email:build": "email build --dir src/emails",
     "email:dev": "email dev --dir src/emails",
     "email:export": "email export --dir src/emails",
-    "new-post": "node scripts/create-new-post.js"
+    "new-post": "node scripts/create-new-post.js",
+    "new-micro": "node scripts/create-new-micro.js"
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.0.13",
