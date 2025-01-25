@@ -12,7 +12,8 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,md,mdx}\"",
     "email:build": "email build --dir src/emails",
     "email:dev": "email dev --dir src/emails",
-    "email:export": "email export --dir src/emails"
+    "email:export": "email export --dir src/emails",
+    "new-post": "node scripts/create-new-post.js"
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.0.13",
