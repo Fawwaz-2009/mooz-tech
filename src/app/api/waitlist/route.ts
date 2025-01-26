@@ -5,6 +5,8 @@ import { projects, waitlist } from '@/db/schema';
 import { eq, sql } from 'drizzle-orm';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
+import { hashEmail } from '@/lib/meta';
+import { sendMetaEvent } from '@/lib/meta';
 
 export const revalidate = 0;
 
@@ -76,13 +78,10 @@ export async function POST(request: Request) {
     console.log('Existing entry check:', { exists: !!existingEntry });
 
     if (existingEntry) {
-      return new NextResponse(
-        JSON.stringify({ error: 'Email already in waitlist' }),
-        {
-          status: 409,
-          headers: { 'Access-Control-Allow-Origin': 'https://pages.mooz.tech' },
-        }
-      );
+      return new NextResponse(JSON.stringify({ error: 'Email already in waitlist' }), {
+        status: 409,
+        headers: { 'Access-Control-Allow-Origin': 'https://pages.mooz.tech' },
+      });
     }
 
     const totalSignups = await db
@@ -124,6 +123,15 @@ export async function POST(request: Request) {
     });
     console.log('Welcome email sent successfully');
 
+    await sendMetaEvent({
+      eventData: {
+        event_name: 'StartTrial',
+        user_data: { em: [hashEmail(email)] },
+      },
+    })
+      .then(console.log)
+      .catch(console.error);
+
     return new NextResponse(
       JSON.stringify({
         success: true,
@@ -144,20 +152,16 @@ export async function POST(request: Request) {
 
     if (error instanceof z.ZodError) {
       console.log('Validation error:', error.errors);
-      return new NextResponse(
-        JSON.stringify({ error: 'Invalid input', details: error.errors }),
-        {
-          status: 400,
-          headers: { 'Access-Control-Allow-Origin': 'https://pages.mooz.tech' },
-        }
-      );
+      return new NextResponse(JSON.stringify({ error: 'Invalid input', details: error.errors }), {
+        status: 400,
+        headers: { 'Access-Control-Allow-Origin': 'https://pages.mooz.tech' },
+      });
     }
 
     return new NextResponse(
       JSON.stringify({
         error: 'Internal server error',
-        details:
-          process.env.NODE_ENV === 'development' ? error.message : undefined,
+        details: process.env.NODE_ENV === 'development' ? error.message : undefined,
       }),
       {
         status: 500,
@@ -215,20 +219,14 @@ export async function GET(request: Request) {
     );
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return new NextResponse(
-        JSON.stringify({ error: 'Invalid input', details: error.errors }),
-        {
-          status: 400,
-          headers: { 'Access-Control-Allow-Origin': 'https://pages.mooz.tech' },
-        }
-      );
-    }
-    return new NextResponse(
-      JSON.stringify({ error: 'Internal server error' }),
-      {
-        status: 500,
+      return new NextResponse(JSON.stringify({ error: 'Invalid input', details: error.errors }), {
+        status: 400,
         headers: { 'Access-Control-Allow-Origin': 'https://pages.mooz.tech' },
-      }
-    );
+      });
+    }
+    return new NextResponse(JSON.stringify({ error: 'Internal server error' }), {
+      status: 500,
+      headers: { 'Access-Control-Allow-Origin': 'https://pages.mooz.tech' },
+    });
   }
 }
