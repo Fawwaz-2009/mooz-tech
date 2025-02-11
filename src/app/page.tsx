@@ -225,6 +225,8 @@ const ContactCard = () => (
   </div>
 );
 
+// Updated
+
 const ProfileCard2 = () => (
   <div className="flex flex-col w-full gap-6 px-8 py-7 bg-[#f7f7f9] rounded-big outline outline-1 outline-[#DEDEE0]">
 
@@ -262,6 +264,157 @@ const ProfileCard2 = () => (
   </div>
 )
 
+const ContactCard2 = () => (
+  <div className="flex flex-col w-full gap-4 px-8 py-[30px] bg-[#f7f7f9] rounded-big outline outline-1 outline-[#DEDEE0]">
+    {/* Header */}
+    <div className="text-small-3 text-gray-400 pl-2 py-2">CONNECT THROUGH</div>
+
+    {/* Link */}
+    <div className="grid grid-rows-2 grid-flow-col  gap-x-[20px] gap-y-[16px]">
+      
+      {/* Email */}
+      <div className="flex flex-col gap-3 px-5 pt-5 pb-4 bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
+        <img src="/channel/gmail.png" alt="Gmail" className="h-12 w-12" />
+        
+        <div className="flex flex-row w-full justify-between align-center">
+          <p className="text-small-1 text-gray-400">Email</p>
+          <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
+          <g filter="url(#filter0_b_4441_7035)">
+          <rect x="-0.000488281" y="0.875" width="30" height="30" rx="15" fill="white" fill-opacity="0.5"/>
+          <rect x="0.832845" y="1.70833" width="28.3333" height="28.3333" rx="14.1667" stroke="#DEDEE0" stroke-width="1.66667"/>
+          <g opacity="0.4" clip-path="url(#clip0_4441_7035)">
+          <g clip-path="url(#clip1_4441_7035)">
+          <path d="M19.1257 11.7507L10.8752 20.0012" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M13.3345 11.7092L19.1265 11.7498L19.1681 17.5418" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          </g>
+          </g>
+          <defs>
+          <filter id="filter0_b_4441_7035" x="-13.3338" y="-12.4583" width="56.6667" height="56.6667" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feGaussianBlur in="BackgroundImageFix" stdDeviation="6.66667"/>
+          <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4441_7035"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4441_7035" result="shape"/>
+          </filter>
+          <clipPath id="clip0_4441_7035">
+          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
+          </clipPath>
+          <clipPath id="clip1_4441_7035">
+          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
+          </clipPath>
+          </defs>
+          </svg>
+        </div>
+      </div>
+
+      {/* LinkedIn */}
+      <div className="flex flex-col gap-3 px-5 pt-5 pb-4 bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
+        <img src="/channel/linkedin.png" alt="LinkedIn" className="h-12 w-12" />
+        
+        <div className="flex flex-row w-full justify-between align-center">
+          <p className="text-small-1 text-gray-400">LinkedIn</p>
+          <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
+          <g filter="url(#filter0_b_4441_7035)">
+          <rect x="-0.000488281" y="0.875" width="30" height="30" rx="15" fill="white" fill-opacity="0.5"/>
+          <rect x="0.832845" y="1.70833" width="28.3333" height="28.3333" rx="14.1667" stroke="#DEDEE0" stroke-width="1.66667"/>
+          <g opacity="0.4" clip-path="url(#clip0_4441_7035)">
+          <g clip-path="url(#clip1_4441_7035)">
+          <path d="M19.1257 11.7507L10.8752 20.0012" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M13.3345 11.7092L19.1265 11.7498L19.1681 17.5418" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          </g>
+          </g>
+          <defs>
+          <filter id="filter0_b_4441_7035" x="-13.3338" y="-12.4583" width="56.6667" height="56.6667" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feGaussianBlur in="BackgroundImageFix" stdDeviation="6.66667"/>
+          <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4441_7035"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4441_7035" result="shape"/>
+          </filter>
+          <clipPath id="clip0_4441_7035">
+          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
+          </clipPath>
+          <clipPath id="clip1_4441_7035">
+          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
+          </clipPath>
+          </defs>
+          </svg>
+        </div>
+      </div>
+
+      {/* Cal */}
+      <div className="flex flex-col gap-3 px-5 pt-5 pb-4 bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
+        <img src="/channel/cal.png" alt="Cal.com" className="h-12 w-12" />
+        
+        <div className="flex flex-row w-full justify-between align-center">
+          <p className="text-small-1 text-gray-400">Cal.com</p>
+          <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
+          <g filter="url(#filter0_b_4441_7035)">
+          <rect x="-0.000488281" y="0.875" width="30" height="30" rx="15" fill="white" fill-opacity="0.5"/>
+          <rect x="0.832845" y="1.70833" width="28.3333" height="28.3333" rx="14.1667" stroke="#DEDEE0" stroke-width="1.66667"/>
+          <g opacity="0.4" clip-path="url(#clip0_4441_7035)">
+          <g clip-path="url(#clip1_4441_7035)">
+          <path d="M19.1257 11.7507L10.8752 20.0012" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M13.3345 11.7092L19.1265 11.7498L19.1681 17.5418" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          </g>
+          </g>
+          <defs>
+          <filter id="filter0_b_4441_7035" x="-13.3338" y="-12.4583" width="56.6667" height="56.6667" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feGaussianBlur in="BackgroundImageFix" stdDeviation="6.66667"/>
+          <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4441_7035"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4441_7035" result="shape"/>
+          </filter>
+          <clipPath id="clip0_4441_7035">
+          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
+          </clipPath>
+          <clipPath id="clip1_4441_7035">
+          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
+          </clipPath>
+          </defs>
+          </svg>
+        </div>
+      </div>
+      
+      {/* WhatsApp */}
+      <div className="flex flex-col gap-3 px-5 pt-5 pb-4 bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
+        <img src="/channel/whatsapp.png" alt="WhatsApp" className="h-12 w-12" />
+        
+        <div className="flex flex-row w-full justify-between align-center">
+          <p className="text-small-1 text-gray-400">WhatsApp</p>
+          <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
+          <g filter="url(#filter0_b_4441_7035)">
+          <rect x="-0.000488281" y="0.875" width="30" height="30" rx="15" fill="white" fill-opacity="0.5"/>
+          <rect x="0.832845" y="1.70833" width="28.3333" height="28.3333" rx="14.1667" stroke="#DEDEE0" stroke-width="1.66667"/>
+          <g opacity="0.4" clip-path="url(#clip0_4441_7035)">
+          <g clip-path="url(#clip1_4441_7035)">
+          <path d="M19.1257 11.7507L10.8752 20.0012" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M13.3345 11.7092L19.1265 11.7498L19.1681 17.5418" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          </g>
+          </g>
+          <defs>
+          <filter id="filter0_b_4441_7035" x="-13.3338" y="-12.4583" width="56.6667" height="56.6667" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feGaussianBlur in="BackgroundImageFix" stdDeviation="6.66667"/>
+          <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4441_7035"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4441_7035" result="shape"/>
+          </filter>
+          <clipPath id="clip0_4441_7035">
+          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
+          </clipPath>
+          <clipPath id="clip1_4441_7035">
+          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
+          </clipPath>
+          </defs>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+)
 
 
 export default function Home() {
@@ -271,6 +424,7 @@ export default function Home() {
       <div className="mx-auto grid max-w-5xl grid-cols-1 justify-center gap-24 p-4 pt-20 md:gap-32 md:pt-40">
         <Hero />
         <ProfileCard2 />
+        <ContactCard2 />
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr,2fr]">
           <ProfileCard />

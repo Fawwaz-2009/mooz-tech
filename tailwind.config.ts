@@ -55,6 +55,7 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
 
         big: '32px',
+        small: '12px',
       },
       fontFamily: {
         bangers: ["var(--font-bangers)", "sans-serif"],
