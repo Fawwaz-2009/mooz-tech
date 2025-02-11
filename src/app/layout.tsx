@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Bangers, Roboto } from 'next/font/google';
 import './globals.css';
+import '../app/font-stylesheet/graphik.css'
 import { Viewport } from 'next';
 import { ViewTransitions } from 'next-view-transitions';
 

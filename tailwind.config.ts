@@ -57,6 +57,8 @@ const config = {
       fontFamily: {
         bangers: ["var(--font-bangers)", "sans-serif"],
         roboto: ["var(--font-roboto)", "sans-serif"],
+        graphik: ["Graphik", "sans-serif"],
+        sans: ['"Segoe UI"', 'sans-serif'],
       },
     },
   },
