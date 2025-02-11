@@ -225,12 +225,52 @@ const ContactCard = () => (
   </div>
 );
 
+const ProfileCard2 = () => (
+  <div className="flex flex-col w-full gap-6 px-8 py-7 bg-[#f7f7f9] rounded-big outline outline-1 outline-[#DEDEE0]">
+
+    {/* First Row */}
+    <div className="flex flex-row justify-between align-center items-start w-full">
+
+      {/* Avatar */}
+      <img src="/fawwaz-avatar.png" alt="Avatar" className="h-16 w-16 rounded-full bg-orange-300" />
+
+      {/* Badge & Time */}
+      <div className="flex flex-col h-full justify-around items-end gap-2">
+        <div className="flex items-center gap-1">
+          <span className="h-2 w-2 rounded-full bg-green-500"></span>
+          <span className="text-green-600 font-medium">Based in Bali</span>
+        </div>
+        <span className="text-gray-600 text-small-2 font-medium">8:27pm</span>
+      </div>
+    </div>
+
+    {/* Second Row */}
+    <h2 className="text-big-1 font-medium">
+      Fawwaz Alharbi<span className="text-gray-300">—Builder of Apps</span>
+    </h2>
+
+    {/* Line */}
+    <hr className="w-full" />
+
+    {/* Last Row */}
+    <p className="text-medium-1 text-gray-400 font-regular">Hi I'm the guy behind Mooz.</p>
+    <p className="text-medium-1 text-gray-400 font-regular">I have 9+ years of turning complex problems into elegant solutions.</p>
+    <p className="text-medium-1 text-gray-400 font-regular">I develop minimalist, but mighty apps for the web fast</p>
+    <p className="text-medium-1 text-gray-400 font-regular">I build products that excite me—and hopefully you too.</p>
+    <p className="text-medium-1 text-gray-400 font-regular">Let's connect if you're nearby! 🌊</p>
+
+  </div>
+)
+
+
+
 export default function Home() {
   return (
     <div className="">
       <Navigation />
       <div className="mx-auto grid max-w-5xl grid-cols-1 justify-center gap-24 p-4 pt-20 md:gap-32 md:pt-40">
         <Hero />
+        <ProfileCard2 />
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr,2fr]">
           <ProfileCard />

@@ -53,6 +53,8 @@ const config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+
+        big: '32px',
       },
       fontFamily: {
         bangers: ["var(--font-bangers)", "sans-serif"],
@@ -60,6 +62,26 @@ const config = {
         graphik: ["Graphik", "sans-serif"],
         sans: ['"Segoe UI"', 'sans-serif'],
       },
+      fontSize: {
+        'big-1': ['32px', {
+          lineHeight: '40px',
+        }],
+        'big-2': ['28px', {
+          lineHeight: '35px',
+        }],
+        'medium-1': ['20px', {
+          lineHeight: '30px',
+        }],
+        'small-1': ['18px', {
+          lineHeight: '30px',
+        }],
+        'small-2': ['16px', {
+          lineHeight: '24px'
+        }],
+        'small-3': ['12px', {
+          lineHeight: '12px'
+        }]
+      }
     },
   },
   plugins: [animate, scrollbarHide],
