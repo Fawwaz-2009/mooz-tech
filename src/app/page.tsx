@@ -17,7 +17,7 @@ const Navigation = () => (
 const Hero = () => (
   <div className="flex flex-col gap-4">
     <h1 className="w-80 text-left font-mono text-3xl font-light leading-normal md:w-auto md:text-center md:text-5xl">
-      I develop <span className="font-bold">minimalist</span> but <span className="font-bold">mighty</span> apps for the web, <span className="font-bold">FAST</span>.
+      I develop <span className="font-bold underline">minimalist</span> but <span className="font-bold">mighty</span> apps for the web, <span className="font-bold">FAST</span>.
     </h1>
   </div>
 );
