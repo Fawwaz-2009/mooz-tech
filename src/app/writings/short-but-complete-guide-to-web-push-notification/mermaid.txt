@@ -1,0 +1,22 @@
+sequenceDiagram
+    participant Browser as Web App Client
+    participant Notification as Notification API
+    participant SW as Service Worker
+    participant Server as Web App Server
+    participant PS as Push Service
+
+    Browser->>Notification: Request Notification Permission
+    Notification-->>Browser: Permission Granted
+    Browser->>+SW: Register Service Worker
+    SW-->>-Browser: Service Worker Registered
+    Browser->>+SW: Create Push Subscription
+    SW-->>-Browser: Push Subscription Created
+    Browser->>+Server: Send Push Subscription Details
+    Server-->>-Browser: Acknowledge Subscription Registration
+    Note over Server,PS: When an event triggers a push
+    Server->>+PS: Send Push Message via Web Push Protocol
+    PS-->>-Server: Acknowledge Message Delivery
+    PS->>+SW: Deliver Push Message
+    SW-->>-PS: Handle Push Event
+    SW->>Notification: Display Notification
+    Notification->>Browser: Show Notification

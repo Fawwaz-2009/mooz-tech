@@ -1,0 +1,190 @@
+export const metadata = {
+  title: "Short but Complete Guide to Web Push Notifications",
+  publishedAt: "2025-02-02",
+  summary: "A deep dive into the architecture and components of web push notifications, complementing our interactive implementation guide.",
+  url: "/writings/short-but-complete-guide-to-web-push-notification",
+  coverImage: "https://zzjbhpochqhujuvwuots.supabase.co/storage/v1/object/public/app_public/blog/web-push.png",
+  tags: ["Web Push", "Notifications", "Architecture", "Web APIs"],
+  ogImage: {
+    url: "https://zzjbhpochqhujuvwuots.supabase.co/storage/v1/object/public/app_public/blog/web-push.png"
+  },
+  status: "published"
+};
+
+When I first wanted to implement web push notifications, I was overwhelmed by the complexity. What I needed wasn't another implementation guide, but a clear mental model. This article provides that big picture, but it's really meant to complement the [interactive demo](https://web-push-demo.mooz.tech/) that walks you through the implementation.
+
+## A Common Source of Confusion: Notification API vs Push API
+
+Before diving into the architecture, let's clear up something that confused me at first: the difference between the Notification API and Push API. While they sound similar, they serve distinct purposes:
+
+**Notification API**
+- Think of it as your "display manager"
+- Its main jobs are:
+  1. Getting permission from the user to show notifications
+  2. Asking the operating system to display notifications
+- Without permission from this API, notifications will never show up
+
+**Push API**
+- Think of it as your "message receiver"
+- Its main jobs are:
+  1. Creating an endpoint for your server to send messages to
+  2. Receiving messages from your server through the push service
+- Even if it receives messages, without Notification API permission, nothing will display
+
+These APIs must work together:
+1. Notification API gets permission
+2. Push API receives the message
+3. Service Worker uses Notification API to display it
+
+> 📚 **Related APIs**
+> - [Notification API](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API) - Display manager
+> - [Push API](https://developer.mozilla.org/en-US/docs/Web/API/Push_API) - Message receiver
+> - [Using the Notifications API](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API/Using_the_Notifications_API) - How they work together
+
+## Understanding the Architecture
+
+To understand web push notifications, it helps to break them down into three main areas:
+1. What happens in the browser
+2. What happens on your server
+3. How they communicate (through push services)
+
+## What Happens in the Browser
+
+The browser is where most of the magic happens. It needs to:
+- Get permission from the user
+- Display notifications
+- Run background processes
+- Handle incoming messages
+
+This is accomplished through two main APIs:
+
+### 1. Notification API
+This is your bridge to the operating system's notification system:
+- Shows the permission prompt to the user
+- Manages permission state ('default', 'granted', 'denied')
+- Handles the actual display of notifications
+- Note: The OS has final say - if Do Not Disturb is on, notifications won't show!
+
+> 📚 **Related APIs and Resources**
+> - [Notifications API](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API) - Core API documentation
+> - [`Notification.requestPermission()`](https://developer.mozilla.org/en-US/docs/Web/API/Notification/requestPermission) - Permission handling
+> - [`Notification.permission`](https://developer.mozilla.org/en-US/docs/Web/API/Notification/permission) - Permission states
+> - [Using the Notifications API](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API/Using_the_Notifications_API) - Practical guide
+
+### 2. Service Worker
+Think of this as your notification manager running in the background:
+- Stays active even when your website is closed
+- Receives push messages
+- Creates and displays the actual notifications
+- Handles user interactions (clicks, dismissals)
+
+> 📚 **Related APIs and Resources**
+> - [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) - Core concepts
+> - [`ServiceWorkerRegistration`](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration) - Registration interface
+> - [`ServiceWorkerRegistration.showNotification()`](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification) - Displaying notifications
+> - [Service Worker Cookbook](https://serviceworke.rs/) - Mozilla's collection of recipes
+
+## What Happens on Your Server
+
+Your server has a simpler but crucial role:
+- Stores subscription information for each user
+- Decides when to send notifications
+- Prepares notification content
+- Handles security requirements
+
+The main components here are:
+
+### 1. Subscription Storage
+- Each user has a unique subscription object
+- Contains the push service endpoint
+- Includes encryption keys for secure messaging
+
+### 2. Notification Trigger System
+- Determines when to send notifications
+- Prepares the notification payload
+- Handles retry logic if needed
+
+> 📚 **Related APIs and Resources**
+> - [Web Push Libraries](https://github.com/web-push-libs) - Official libraries for different languages
+> - [Push API](https://developer.mozilla.org/en-US/docs/Web/API/Push_API) - Understanding push messages
+> - [Web Push Protocol](https://datatracker.ietf.org/doc/html/rfc8030) - Technical specification
+
+## How They Communicate: The Push Service Bridge
+
+This is where VAPID (Voluntary Application Server Identification) protocol comes in. It's the secure bridge between your server and the user's browser:
+
+### Push Service
+- Each browser vendor runs their own push service
+  - Chrome uses Firebase Cloud Messaging
+  - Firefox has its own service
+  - Safari uses Apple Push Notification service
+- Acts as a message broker
+- Maintains persistent connections with browsers
+- Queues messages when browsers are offline
+
+### VAPID Protocol
+This is the security layer that ensures only your server can send notifications to your users:
+- Uses public/private key pairs
+  - Public key: Used by the browser for subscription
+  - Private key: Used by your server to sign messages
+- Prevents spam and abuse
+- Authenticates your server to the push service
+
+> 📚 **Related APIs and Resources**
+> - [VAPID Specification](https://datatracker.ietf.org/doc/html/rfc8292) - Technical details
+> - [Mozilla Push Service](https://mozilla-push-service.readthedocs.io/en/latest/) - Firefox's service
+
+## The Journey of a Push Notification 🚀
+
+Before we dive into the details of the flow, let's visualize how all these pieces interact:
+
+![Notification Journey](https://zzjbhpochqhujuvwuots.supabase.co/storage/v1/object/public/app_public/blog/notification-journey.png)
+
+This diagram shows the complete lifecycle of a push notification, from initial setup to displaying a notification. Let's break down each phase in detail.
+
+## The Flow of a Notification
+
+Now that we can see how the pieces interact, let's examine each phase more closely:
+
+1. **Setup Phase** (One-time)
+   - Browser: Requests notification permission
+   - Browser: Registers service worker
+   - Browser: Gets subscription from push service using your public key
+   - Your Server: Stores the subscription
+
+2. **Sending Phase** (Each notification)
+   - Your Server: Prepares notification
+   - Your Server: Signs with private key
+   - Your Server → Push Service: Sends signed message
+   - Push Service → Browser: Delivers to correct browser
+   - Service Worker: Receives and displays notification
+
+> 📚 **Related APIs and Resources**
+> - [Can I Use: Push API](https://caniuse.com/push-api) - Browser support
+
+## Common Gotchas and Tips
+
+- **Permissions are permanent** - Once denied, they can only be reset through browser settings
+- **Service Worker Scope** - Service workers can only handle notifications for their scope
+- **Message Size Limits** - Push services typically limit message sizes (often around 4KB)
+- **Offline Handling** - Messages may be queued when users are offline
+- **Browser Differences** - Different browsers may handle notifications slightly differently
+
+> 📚 **Debugging Resources**
+> - [Chrome DevTools: Service Workers](https://developer.chrome.com/docs/devtools/progressive-web-apps/) - Debug in Chrome
+
+## Ready to Implement?
+
+Now that you understand where everything happens, head over to our [interactive demo](https://web-push-demo.mooz.tech/) where we'll walk through implementing each piece step by step. The demo provides hands-on experience with:
+
+- Requesting permissions
+- Setting up VAPID keys
+- Registering service workers
+- Creating subscriptions
+- Sending and receiving notifications
+
+Understanding these concepts will help you build more robust notification systems and debug issues more effectively when they arise.
+
+## Want to Go Deeper?
+
+While writing this guide, I discovered an incredible resource that goes far beyond what we've covered here: [The Web Push Book](https://web-push-book.gauntface.com/) by Matt Gaunt. If you're interested in diving deeper into web push notifications, It's a fantastic next step after you've got the basics working with our demo.
