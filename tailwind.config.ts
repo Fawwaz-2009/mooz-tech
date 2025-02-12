@@ -76,6 +76,9 @@ const config = {
         'medium-1': ['20px', {
           lineHeight: '30px',
         }],
+        'medium-2': ['24px', {
+          lineHeight: '28px',
+        }],
         'small-1': ['18px', {
           lineHeight: '30px',
         }],

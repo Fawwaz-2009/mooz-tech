@@ -512,6 +512,12 @@ const MoozLogo = () => (
   </div>
 )
 
+const UpdateInfo = () => (
+  <div className="flex items-center justify-center w-full h-[315px] outline-dashed outline-[6px dashed 4px] outline-[#DCDCDD] rounded-big overflow-clip">
+    <p className='text-medium-2 font-regular text-[#B3B3B3] text-center]'>A new update is coming soon..</p>
+  </div>
+)
+
 export default function Home() {
   return (
     <div className="">
@@ -524,6 +530,7 @@ export default function Home() {
         <WritingsCard2 />
         <Projects />
         <MoozLogo />
+        <UpdateInfo />
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr,2fr]">
           <ProfileCard />
