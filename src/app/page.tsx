@@ -505,6 +505,13 @@ const BooksCard2 = () => (
   </div>
 )
 
+const MoozLogo = () => (
+  <div className="flex items-center justify-center relative w-full h-[315px] bg-[#FFDC1C] outline outline-4 outline-[#E5C619] rounded-big overflow-clip">
+    <img src="/mooz-logo-backdrop.png" alt="Mooz" className='absolute max-w-none rotate-[15deg]'/>
+    <img src="/mooz-wordmark.png" alt="Mooz" className='z-20'/>
+  </div>
+)
+
 export default function Home() {
   return (
     <div className="">
@@ -513,9 +520,10 @@ export default function Home() {
         <Hero />
         <ProfileCard2 />
         <ContactCard2 />
+        <BooksCard2 />
         <WritingsCard2 />
         <Projects />
-        <BooksCard2 />
+        <MoozLogo />
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr,2fr]">
           <ProfileCard />
