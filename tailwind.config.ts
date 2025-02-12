@@ -48,6 +48,9 @@ const config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+
+        'dark-blue': '#596E80',
+
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -82,6 +85,12 @@ const config = {
         'small-3': ['12px', {
           lineHeight: '12px'
         }]
+      },
+      textColor: {
+        'dark-blue': '#596E80',
+        'light-blue': '#E9F5FF',
+        'dark-red': '#806259',
+        'light-red': '#FFC4B2',
       }
     },
   },

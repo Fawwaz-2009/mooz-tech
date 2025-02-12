@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import Link from 'next/link';
-import { Mail, Linkedin, MessageCircle } from 'lucide-react';
+import { Mail, Linkedin, MessageCircle, BookOpenText, MoveUpRight, CodeXml } from 'lucide-react';
 
 const Navigation = () => (
   <nav className="mx-auto flex max-w-5xl items-center justify-between p-4">
@@ -276,7 +276,7 @@ const ContactCard2 = () => (
       <div className="flex flex-col gap-3 px-5 pt-5 pb-4 bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
         <img src="/channel/gmail.png" alt="Gmail" className="h-12 w-12" />
         
-        <div className="flex flex-row w-full justify-between align-center">
+        <div className="flex flex-row w-full justify-between items-center">
           <p className="text-small-1 text-gray-400">Email</p>
           <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
           <g filter="url(#filter0_b_4441_7035)">
@@ -311,7 +311,7 @@ const ContactCard2 = () => (
       <div className="flex flex-col gap-3 px-5 pt-5 pb-4 bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
         <img src="/channel/linkedin.png" alt="LinkedIn" className="h-12 w-12" />
         
-        <div className="flex flex-row w-full justify-between align-center">
+        <div className="flex flex-row w-full justify-between items-center">
           <p className="text-small-1 text-gray-400">LinkedIn</p>
           <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
           <g filter="url(#filter0_b_4441_7035)">
@@ -346,7 +346,7 @@ const ContactCard2 = () => (
       <div className="flex flex-col gap-3 px-5 pt-5 pb-4 bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
         <img src="/channel/cal.png" alt="Cal.com" className="h-12 w-12" />
         
-        <div className="flex flex-row w-full justify-between align-center">
+        <div className="flex flex-row w-full justify-between items-center">
           <p className="text-small-1 text-gray-400">Cal.com</p>
           <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
           <g filter="url(#filter0_b_4441_7035)">
@@ -381,7 +381,7 @@ const ContactCard2 = () => (
       <div className="flex flex-col gap-3 px-5 pt-5 pb-4 bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
         <img src="/channel/whatsapp.png" alt="WhatsApp" className="h-12 w-12" />
         
-        <div className="flex flex-row w-full justify-between align-center">
+        <div className="flex flex-row w-full justify-between items-center">
           <p className="text-small-1 text-gray-400">WhatsApp</p>
           <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
           <g filter="url(#filter0_b_4441_7035)">
@@ -416,6 +416,60 @@ const ContactCard2 = () => (
   </div>
 )
 
+const WritingsCard2 = () => (
+  <div className="flex flex-col outline outline-1 outline-[#DEDEE0] rounded-big overflow-clip">
+    {/* Header */}
+    <div className="flex flex-row gap-2 w-full items-center px-8 py-[27px] bg-[#E9F5FF] border-b-[2px] border-[#D2DDE5]">
+      <BookOpenText className='h-6 w-6 stroke-dark-blue stroke-[1.5px]' />
+      <p className='text-small-3 font-sans font-semibold uppercase text-dark-blue'>Journal on Building Product</p>
+    </div>
+
+    {/* Content */}
+    <div className="w-full h-[238px] bg-[#F7F7F9] relative">
+
+      {/* Icon */}
+      <div className="absolute bottom-4 left-4 p-2 bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0]">
+        <MoveUpRight className='w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117]'/>
+      </div>
+
+      {/* Line */}
+      <div className="flex flex-col w-full gap-[51px] pt-[51px]">
+        <hr className="w-full border-2" />
+        <hr className="w-full border-2" />
+        <hr className="w-full border-2" />
+      </div>
+
+      {/* Image */}
+      <img src="/writings/hand.png" alt="Hand" className="absolute top-3 left-9" />
+    </div>
+  </div>
+)
+
+const Projects = () => (
+  <div className="flex flex-col outline outline-1 outline-[#DEDEE0] rounded-big overflow-clip">
+    {/* Header */}
+    <div className="flex flex-row gap-2 w-full items-center px-8 py-[27px] bg-[#FEF0F1] border-b-[2px] border-[#F1E4E5] z-20">
+      <CodeXml className='h-6 w-6 stroke-dark-red stroke-[1.5px]' />
+      <p className='text-small-3 font-sans font-semibold uppercase text-dark-red'>Interactive Projects Collection</p>
+    </div>
+
+    {/* Content */}
+    <div className="w-full h-[572px] bg-white relative">
+
+      {/* Icon */}
+      <div className="absolute bottom-4 left-4 p-2 bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0] z-20">
+        <MoveUpRight className='w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117]'/>
+      </div>
+
+      {/* Image */}
+      <img src="/projects/code-bg.png" alt="Moon" className="absolute top-[74px] max-w-none left-1/2 transform -translate-x-1/2" />
+      <img src="/projects/moon.png" alt="Moon" className="absolute bottom-[-24px] max-w-none left-1/2 transform -translate-x-1/2" />
+      <img src="/projects/mountain.png" alt="Mountain" className="absolute bottom-0 max-w-none left-1/2 transform -translate-x-1/2" />
+      <img src="/projects/rocket.png" alt="Rocket" className="absolute bottom-[-105px] left-1/2 transform -translate-x-1/2" />
+      <img src="/projects/forest.png" alt="Forest" className="absolute bottom-0 max-w-none left-1/2 transform -translate-x-1/2" />
+    </div>
+  </div>
+)
 
 export default function Home() {
   return (
@@ -425,6 +479,8 @@ export default function Home() {
         <Hero />
         <ProfileCard2 />
         <ContactCard2 />
+        <WritingsCard2 />
+        <Projects />
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr,2fr]">
           <ProfileCard />
