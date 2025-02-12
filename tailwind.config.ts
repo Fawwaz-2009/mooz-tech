@@ -91,6 +91,8 @@ const config = {
         'light-blue': '#E9F5FF',
         'dark-red': '#806259',
         'light-red': '#FFC4B2',
+        'dark-gray': '#727272',
+        'light-gray': '#F7F7F9',
       }
     },
   },

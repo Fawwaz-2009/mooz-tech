@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import Link from 'next/link';
-import { Mail, Linkedin, MessageCircle, BookOpenText, MoveUpRight, CodeXml } from 'lucide-react';
+import { Mail, Linkedin, MessageCircle, BookOpenText, MoveUpRight, CodeXml, LibraryBig } from 'lucide-react';
 
 const Navigation = () => (
   <nav className="mx-auto flex max-w-5xl items-center justify-between p-4">
@@ -471,6 +471,40 @@ const Projects = () => (
   </div>
 )
 
+const BooksCard2 = () => (
+  <div className="flex flex-col bg-[#f7f7f9] outline outline-1 outline-[#DEDEE0] rounded-big overflow-clip">
+    {/* Header */}
+    <div className="flex flex-row gap-2 w-full items-center px-8 py-[27px]">
+      <LibraryBig className='h-6 w-6 stroke-dark-gray stroke-[1px]' />
+      <p className='text-small-3 font-sans font-reglar uppercase text-dark-gray'>Recommended Books</p>
+    </div>
+
+    {/* Content */}
+    <div className="w-full h-[238px] bg-[#F7F7F9] relative">
+
+      {/* Icon */}
+      <div className="absolute bottom-4 left-4 p-2 bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0] z-20">
+        <MoveUpRight className='w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117]'/>
+      </div>
+
+      {/* Rainbow BG */}
+      <img src="/rainbow.png" alt="rainbow" className='absolute w-full opacity-20' />
+
+      {/* Books-Image */}
+      <div className="flex flex-row absolute bottom-[-64px] right-[-241px] z-0">
+        <img src="/books-display/book-01.png" alt="Book-1" className='rotate-[-15deg]' />
+        <img src="/books-display/book-02.png" alt="Book-2" className='rotate-[-15deg] -ml-[115px]' />
+        <img src="/books-display/book-03.png" alt="Book-3" className='rotate-[-15deg] -ml-[115px]' />
+        <img src="/books-display/book-04.png" alt="Book-4" className='rotate-[-15deg] -ml-[115px]' />
+        <img src="/books-display/book-05.png" alt="Book-5" className='rotate-[-15deg] -ml-[115px]' />
+        <img src="/books-display/book-06.png" alt="Book-6" className='rotate-[-15deg] -ml-[115px]' />
+        <img src="/books-display/book-07.png" alt="Book-7" className='rotate-[-15deg] -ml-[115px]' />
+        <img src="/books-display/book-08.png" alt="Book-8" className='rotate-[-15deg] -ml-[115px]' />
+      </div>
+    </div>
+  </div>
+)
+
 export default function Home() {
   return (
     <div className="">
@@ -481,6 +515,7 @@ export default function Home() {
         <ContactCard2 />
         <WritingsCard2 />
         <Projects />
+        <BooksCard2 />
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr,2fr]">
           <ProfileCard />
