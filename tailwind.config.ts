@@ -96,6 +96,9 @@ const config = {
         'light-red': '#FFC4B2',
         'dark-gray': '#727272',
         'light-gray': '#F7F7F9',
+      },
+      screens: {
+        'xl': '1200px',
       }
     },
   },

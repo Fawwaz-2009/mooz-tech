@@ -4,11 +4,12 @@ import Link from 'next/link';
 import { Mail, Linkedin, MessageCircle, BookOpenText, MoveUpRight, CodeXml, LibraryBig } from 'lucide-react';
 
 const Navigation = () => (
-  <nav className="mx-auto flex max-w-5xl items-center justify-between p-4">
-    <Link href="/">
-      <img src="/mooz-logo2.jpg" alt="Logo" className="h-16 w-auto rounded-full" />
+  <nav className="mx-auto flex max-w-[1368px] items-center justify-between px-4 pt-12">    
+    <Link href="/" className='p-[5px] bg-[#FFFFFF] bg-opacity-80 outline outline-1 outline-[#E5E5E5] rounded-full'>
+      <img src="/mooz-face.png" alt="Logo" className="h-10 w-auto rounded-full" />
     </Link>
-    <Button asChild>
+
+    <Button asChild className='shadow-md'>
       <Link href="https://cal.com/fawwaz/dev">Book a call</Link>
     </Button>
   </nav>
@@ -37,7 +38,7 @@ const ProfileCard = () => (
         </div>
       </div>
       <p className="mt-4 text-xl text-gray-700">
-        {` Hi I'm the guy behind Mooz and with 9+ years of turning complex problems into elegant solutions, I build products that excite me—and hopefully
+        {` Hi I'm the guy behind  and with 9+ years of turning complex problems into elegant solutions, I build products that excite me—and hopefully
         you too. Let's connect if you're nearby! 🌊`}
       </p>
     </div>
@@ -197,18 +198,18 @@ const ContactCard = () => (
   <div className="gird-cols-1 grid h-96 items-center justify-center rounded-3xl bg-slate-200 text-center shadow-md">
     <div className="flex flex-col items-center gap-10">
       <p className="font-mono text-4xl font-semibold">Contact Me</p>
-      <p className="text-2xl text-muted-foreground">fawwaz@mooz.tech</p>
+      <p className="text-2xl text-muted-foreground">fawwaz@.tech</p>
       <ul className="flex w-60 w-full justify-between gap-4">
         <li>
           <Button variant="ghost" size="icon" asChild>
-            <a href="mailto:fawwaz@mooz.tech">
+            <a href="mailto:fawwaz@.tech">
               <Mail className="!h-7 !w-7" />
             </a>
           </Button>
         </li>
         <li>
           <Button variant="ghost" size="icon" asChild>
-            <a href="https://linkedin.com/in/fawwaz-mooz">
+            <a href="https://linkedin.com/in/fawwaz-">
               <Linkedin className="!h-7 !w-7" />
             </a>
           </Button>
@@ -228,7 +229,7 @@ const ContactCard = () => (
 // Updated
 
 const ProfileCard2 = () => (
-  <div className="flex flex-col w-full gap-6 px-8 py-7 bg-[#f7f7f9] rounded-big outline outline-1 outline-[#DEDEE0]">
+  <div className="flex flex-col w-full h-full gap-6 px-8 py-7 bg-[#f7f7f9] rounded-big outline outline-1 outline-[#DEDEE0]">
 
     {/* First Row */}
     <div className="flex flex-row justify-between align-center items-start w-full">
@@ -255,7 +256,7 @@ const ProfileCard2 = () => (
     <hr className="w-full" />
 
     {/* Last Row */}
-    <p className="text-medium-1 text-gray-400 font-regular">Hi I'm the guy behind Mooz.</p>
+    <p className="text-medium-1 text-gray-400 font-regular">Hi I'm the guy behind .</p>
     <p className="text-medium-1 text-gray-400 font-regular">I have 9+ years of turning complex problems into elegant solutions.</p>
     <p className="text-medium-1 text-gray-400 font-regular">I develop minimalist, but mighty apps for the web fast</p>
     <p className="text-medium-1 text-gray-400 font-regular">I build products that excite me—and hopefully you too.</p>
@@ -265,7 +266,7 @@ const ProfileCard2 = () => (
 )
 
 const ContactCard2 = () => (
-  <div className="flex flex-col w-full gap-4 px-8 py-[30px] bg-[#f7f7f9] rounded-big outline outline-1 outline-[#DEDEE0]">
+  <div className="flex flex-col w-full h-full gap-4 px-8 py-[27px] bg-[#f7f7f9] rounded-big outline outline-1 outline-[#DEDEE0]">
     {/* Header */}
     <div className="text-small-3 text-gray-400 pl-2 py-2">CONNECT THROUGH</div>
 
@@ -273,142 +274,63 @@ const ContactCard2 = () => (
     <div className="grid grid-rows-2 grid-flow-col  gap-x-[20px] gap-y-[16px]">
       
       {/* Email */}
-      <div className="flex flex-col gap-3 px-5 pt-5 pb-4 bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
-        <img src="/channel/gmail.png" alt="Gmail" className="h-12 w-12" />
+      <div className="flex flex-col gap-[10px] px-5 pt-4 pb-[10px] bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
+        <img src="/channel/gmail.png" alt="Gmail" className="h-10 w-10" />
         
         <div className="flex flex-row w-full justify-between items-center">
           <p className="text-small-1 text-gray-400">Email</p>
-          <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
-          <g filter="url(#filter0_b_4441_7035)">
-          <rect x="-0.000488281" y="0.875" width="30" height="30" rx="15" fill="white" fill-opacity="0.5"/>
-          <rect x="0.832845" y="1.70833" width="28.3333" height="28.3333" rx="14.1667" stroke="#DEDEE0" stroke-width="1.66667"/>
-          <g opacity="0.4" clip-path="url(#clip0_4441_7035)">
-          <g clip-path="url(#clip1_4441_7035)">
-          <path d="M19.1257 11.7507L10.8752 20.0012" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M13.3345 11.7092L19.1265 11.7498L19.1681 17.5418" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
-          </g>
-          </g>
-          </g>
-          <defs>
-          <filter id="filter0_b_4441_7035" x="-13.3338" y="-12.4583" width="56.6667" height="56.6667" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-          <feGaussianBlur in="BackgroundImageFix" stdDeviation="6.66667"/>
-          <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4441_7035"/>
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4441_7035" result="shape"/>
-          </filter>
-          <clipPath id="clip0_4441_7035">
-          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
-          </clipPath>
-          <clipPath id="clip1_4441_7035">
-          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
-          </clipPath>
-          </defs>
-          </svg>
+
+          <Link href="/" legacyBehavior>
+            <a className="p-[5px] bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0]">
+              <MoveUpRight className='w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117]'/>
+            </a>
+          </Link>
+
         </div>
       </div>
 
       {/* LinkedIn */}
-      <div className="flex flex-col gap-3 px-5 pt-5 pb-4 bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
-        <img src="/channel/linkedin.png" alt="LinkedIn" className="h-12 w-12" />
+      <div className="flex flex-col gap-[10px] px-5 pt-4 pb-[10px] bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
+        <img src="/channel/linkedin.png" alt="LinkedIn" className="h-10 w-10" />
         
         <div className="flex flex-row w-full justify-between items-center">
           <p className="text-small-1 text-gray-400">LinkedIn</p>
-          <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
-          <g filter="url(#filter0_b_4441_7035)">
-          <rect x="-0.000488281" y="0.875" width="30" height="30" rx="15" fill="white" fill-opacity="0.5"/>
-          <rect x="0.832845" y="1.70833" width="28.3333" height="28.3333" rx="14.1667" stroke="#DEDEE0" stroke-width="1.66667"/>
-          <g opacity="0.4" clip-path="url(#clip0_4441_7035)">
-          <g clip-path="url(#clip1_4441_7035)">
-          <path d="M19.1257 11.7507L10.8752 20.0012" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M13.3345 11.7092L19.1265 11.7498L19.1681 17.5418" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
-          </g>
-          </g>
-          </g>
-          <defs>
-          <filter id="filter0_b_4441_7035" x="-13.3338" y="-12.4583" width="56.6667" height="56.6667" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-          <feGaussianBlur in="BackgroundImageFix" stdDeviation="6.66667"/>
-          <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4441_7035"/>
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4441_7035" result="shape"/>
-          </filter>
-          <clipPath id="clip0_4441_7035">
-          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
-          </clipPath>
-          <clipPath id="clip1_4441_7035">
-          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
-          </clipPath>
-          </defs>
-          </svg>
+
+          <Link href="/" legacyBehavior>
+            <a className="p-[5px] bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0]">
+              <MoveUpRight className='w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117]'/>
+            </a>
+          </Link>
         </div>
       </div>
 
       {/* Cal */}
-      <div className="flex flex-col gap-3 px-5 pt-5 pb-4 bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
-        <img src="/channel/cal.png" alt="Cal.com" className="h-12 w-12" />
+      <div className="flex flex-col gap-[10px] px-5 pt-4 pb-[10px] bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
+        <img src="/channel/cal.png" alt="Cal.com" className="h-10 w-10" />
         
         <div className="flex flex-row w-full justify-between items-center">
           <p className="text-small-1 text-gray-400">Cal.com</p>
-          <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
-          <g filter="url(#filter0_b_4441_7035)">
-          <rect x="-0.000488281" y="0.875" width="30" height="30" rx="15" fill="white" fill-opacity="0.5"/>
-          <rect x="0.832845" y="1.70833" width="28.3333" height="28.3333" rx="14.1667" stroke="#DEDEE0" stroke-width="1.66667"/>
-          <g opacity="0.4" clip-path="url(#clip0_4441_7035)">
-          <g clip-path="url(#clip1_4441_7035)">
-          <path d="M19.1257 11.7507L10.8752 20.0012" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M13.3345 11.7092L19.1265 11.7498L19.1681 17.5418" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
-          </g>
-          </g>
-          </g>
-          <defs>
-          <filter id="filter0_b_4441_7035" x="-13.3338" y="-12.4583" width="56.6667" height="56.6667" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-          <feGaussianBlur in="BackgroundImageFix" stdDeviation="6.66667"/>
-          <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4441_7035"/>
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4441_7035" result="shape"/>
-          </filter>
-          <clipPath id="clip0_4441_7035">
-          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
-          </clipPath>
-          <clipPath id="clip1_4441_7035">
-          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
-          </clipPath>
-          </defs>
-          </svg>
+
+          <Link href="/" legacyBehavior>
+            <a className="p-[5px] bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0]">
+              <MoveUpRight className='w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117]'/>
+            </a>
+          </Link>
         </div>
       </div>
       
       {/* WhatsApp */}
-      <div className="flex flex-col gap-3 px-5 pt-5 pb-4 bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
-        <img src="/channel/whatsapp.png" alt="WhatsApp" className="h-12 w-12" />
+      <div className="flex flex-col gap-[10px] px-5 pt-4 pb-[10px] bg-[#FEFEFE] rounded-small outline outline-1 outline-[#F0F0F0] shadow-sm">
+        <img src="/channel/whatsapp.png" alt="WhatsApp" className="h-10 w-10" />
         
         <div className="flex flex-row w-full justify-between items-center">
           <p className="text-small-1 text-gray-400">WhatsApp</p>
-          <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
-          <g filter="url(#filter0_b_4441_7035)">
-          <rect x="-0.000488281" y="0.875" width="30" height="30" rx="15" fill="white" fill-opacity="0.5"/>
-          <rect x="0.832845" y="1.70833" width="28.3333" height="28.3333" rx="14.1667" stroke="#DEDEE0" stroke-width="1.66667"/>
-          <g opacity="0.4" clip-path="url(#clip0_4441_7035)">
-          <g clip-path="url(#clip1_4441_7035)">
-          <path d="M19.1257 11.7507L10.8752 20.0012" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M13.3345 11.7092L19.1265 11.7498L19.1681 17.5418" stroke="#0D1117" stroke-width="1.64329" stroke-linecap="round" stroke-linejoin="round"/>
-          </g>
-          </g>
-          </g>
-          <defs>
-          <filter id="filter0_b_4441_7035" x="-13.3338" y="-12.4583" width="56.6667" height="56.6667" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-          <feGaussianBlur in="BackgroundImageFix" stdDeviation="6.66667"/>
-          <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4441_7035"/>
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4441_7035" result="shape"/>
-          </filter>
-          <clipPath id="clip0_4441_7035">
-          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
-          </clipPath>
-          <clipPath id="clip1_4441_7035">
-          <rect width="20" height="20" fill="white" transform="translate(4.99951 5.875)"/>
-          </clipPath>
-          </defs>
-          </svg>
+
+          <Link href="/" legacyBehavior>
+            <a className="p-[5px] bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0]">
+              <MoveUpRight className='w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117]'/>
+            </a>
+          </Link>
         </div>
       </div>
 
@@ -417,7 +339,7 @@ const ContactCard2 = () => (
 )
 
 const WritingsCard2 = () => (
-  <div className="flex flex-col outline outline-1 outline-[#DEDEE0] rounded-big overflow-clip">
+  <div className="flex flex-col h-full outline outline-1 outline-[#DEDEE0] rounded-big overflow-clip">
     {/* Header */}
     <div className="flex flex-row gap-2 w-full items-center px-8 py-[27px] bg-[#E9F5FF] border-b-[2px] border-[#D2DDE5]">
       <BookOpenText className='h-6 w-6 stroke-dark-blue stroke-[1.5px]' />
@@ -425,15 +347,11 @@ const WritingsCard2 = () => (
     </div>
 
     {/* Content */}
-    <div className="w-full h-[238px] bg-[#F7F7F9] relative">
-
-      {/* Icon */}
-      <div className="absolute bottom-4 left-4 p-2 bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0]">
-        <MoveUpRight className='w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117]'/>
-      </div>
+    <div className="w-full h-full min-h-[238px] bg-[#F7F7F9] relative">
 
       {/* Line */}
       <div className="flex flex-col w-full gap-[51px] pt-[51px]">
+        <hr className="w-full border-2" />
         <hr className="w-full border-2" />
         <hr className="w-full border-2" />
         <hr className="w-full border-2" />
@@ -441,12 +359,20 @@ const WritingsCard2 = () => (
 
       {/* Image */}
       <img src="/writings/hand.png" alt="Hand" className="absolute top-3 left-9" />
+
+      {/* Icon */}
+      <Link href="/" legacyBehavior>
+        <a className="absolute bottom-4 left-4 p-2 bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0]">
+          <MoveUpRight className='w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117]'/>
+        </a>
+      </Link>
+
     </div>
   </div>
 )
 
 const Projects = () => (
-  <div className="flex flex-col outline outline-1 outline-[#DEDEE0] rounded-big overflow-clip">
+  <div className="flex flex-col h-full outline outline-1 outline-[#DEDEE0] rounded-big overflow-clip">
     {/* Header */}
     <div className="flex flex-row gap-2 w-full items-center px-8 py-[27px] bg-[#FEF0F1] border-b-[2px] border-[#F1E4E5] z-20">
       <CodeXml className='h-6 w-6 stroke-dark-red stroke-[1.5px]' />
@@ -454,12 +380,14 @@ const Projects = () => (
     </div>
 
     {/* Content */}
-    <div className="w-full h-[572px] bg-white relative">
+    <div className="w-full h-full min-h-[571px] bg-white relative">
 
       {/* Icon */}
-      <div className="absolute bottom-4 left-4 p-2 bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0] z-20">
-        <MoveUpRight className='w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117]'/>
-      </div>
+      <Link href="/" legacyBehavior>
+        <a className="absolute bottom-4 left-4 p-2 bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0] z-20">
+           <MoveUpRight className='w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117]'/>
+        </a>
+      </Link>
 
       {/* Image */}
       <img src="/projects/code-bg.png" alt="Moon" className="absolute top-[74px] max-w-none left-1/2 transform -translate-x-1/2" />
@@ -472,7 +400,7 @@ const Projects = () => (
 )
 
 const BooksCard2 = () => (
-  <div className="flex flex-col bg-[#f7f7f9] outline outline-1 outline-[#DEDEE0] rounded-big overflow-clip">
+  <div className="flex flex-col h-full bg-[#f7f7f9] outline outline-1 outline-[#DEDEE0] rounded-big overflow-clip">
     {/* Header */}
     <div className="flex flex-row gap-2 w-full items-center px-8 py-[27px]">
       <LibraryBig className='h-6 w-6 stroke-dark-gray stroke-[1px]' />
@@ -480,12 +408,14 @@ const BooksCard2 = () => (
     </div>
 
     {/* Content */}
-    <div className="w-full h-[238px] bg-[#F7F7F9] relative">
+    <div className="w-full h-full min-h-[238px] bg-[#F7F7F9] relative">
 
       {/* Icon */}
-      <div className="absolute bottom-4 left-4 p-2 bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0] z-20">
-        <MoveUpRight className='w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117]'/>
-      </div>
+      <Link href="/" legacyBehavior>
+        <a className="absolute bottom-4 left-4 p-2 bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0] z-20">
+          <MoveUpRight className='w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117]'/>
+        </a>
+      </Link>
 
       {/* Rainbow BG */}
       <img src="/rainbow.png" alt="rainbow" className='absolute w-full opacity-20' />
@@ -505,15 +435,15 @@ const BooksCard2 = () => (
   </div>
 )
 
-const MoozLogo = () => (
-  <div className="flex items-center justify-center relative w-full h-[315px] bg-[#FFDC1C] outline outline-4 outline-[#E5C619] rounded-big overflow-clip">
-    <img src="/mooz-logo-backdrop.png" alt="Mooz" className='absolute max-w-none rotate-[15deg]'/>
-    <img src="/mooz-wordmark.png" alt="Mooz" className='z-20'/>
+const Logo = () => (
+  <div className="flex items-center justify-center relative w-full h-full min-h-[315px] bg-[#FFDC1C] outline outline-4 outline-[#E5C619] rounded-big overflow-clip">
+    <img src="/mooz-logo-backdrop.png" alt="" className='absolute max-w-none rotate-[15deg]'/>
+    <img src="/mooz-wordmark.png" alt="" className='z-20'/>
   </div>
 )
 
 const UpdateInfo = () => (
-  <div className="flex items-center justify-center w-full h-[315px] outline-dashed outline-[6px dashed 4px] outline-[#DCDCDD] rounded-big overflow-clip">
+  <div className="flex items-center justify-center w-full h-full min-h-[328px] outline-dashed outline-[6px dashed 4px] outline-[#DCDCDD] rounded-big overflow-clip">
     <p className='text-medium-2 font-regular text-[#B3B3B3] text-center]'>A new update is coming soon..</p>
   </div>
 )
@@ -521,36 +451,43 @@ const UpdateInfo = () => (
 export default function Home() {
   return (
     <div className="">
-      <Navigation />
-      <div className="mx-auto grid max-w-5xl grid-cols-1 justify-center gap-24 p-4 pt-20 md:gap-32 md:pt-40">
-        <Hero />
-        <ProfileCard2 />
-        <ContactCard2 />
-        <BooksCard2 />
-        <WritingsCard2 />
-        <Projects />
-        <MoozLogo />
-        <UpdateInfo />
+      <div className="fixed w-full z-40">
+        <Navigation />
+      </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr,2fr]">
-          <ProfileCard />
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:grid-rows-2">
-            <WritingsCard />
-            <ChallengesCard />
-            <BooksCard />
-            <LovableAppsCard />
+      {/* Cards */}
+      <div className="mx-auto grid max-w-[1368px] grid-cols-1 justify-center px-4 pt-[174px] pb-16">
+        
+        {/* Card */}
+        <div className="grid xl:grid-cols-3 xl:grid-rows-3 gap-5">
+          <div className="xl:row-span-2">
+            <ProfileCard2 />
           </div>
-        </div>
+          
+          <div className="xl:col-span-2">
+            <BooksCard2 />
+          </div>
+          
+          <div>
+            <Logo />
+          </div>
+          
+          <div className="xl:row-span-2">
+            <Projects />
+          </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <BookCallCard />
-          <ContactCard />
-        </div>
+          <div>
+            <ContactCard2 />
+          </div>
 
-        <div className="flex items-center justify-center gap-4 py-20">
-          <h2 className="text-4xl font-light md:text-7xl">Thank you</h2>
-          <span className="text-4xl md:text-6xl">🙏</span>
-        </div>
+          <div>
+            <WritingsCard2 />
+          </div>
+        
+          <div className="xl:col-span-3">
+            <UpdateInfo />
+          </div>
+        </div>        
       </div>
     </div>
   );
