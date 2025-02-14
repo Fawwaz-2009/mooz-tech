@@ -65,6 +65,7 @@ const config = {
         roboto: ["var(--font-roboto)", "sans-serif"],
         graphik: ["Graphik", "sans-serif"],
         sans: ['"Segoe UI"', 'sans-serif'],
+        caveat: ["Caveat", 'cursive'],
       },
       fontSize: {
         'big-1': ['32px', {
@@ -99,6 +100,148 @@ const config = {
       },
       screens: {
         'xl': '1200px',
+      },
+      keyframes: {
+        // Projects Card
+        rocket: {
+          '0%': {
+            transform: 'translateX(-50%) translateY(0)'
+          },
+          '50%': {
+            transform: 'translateX(-50%) translateY(-128px)'
+          },
+          '100%': {
+            transform: 'translateX(-50%) translateY(-240px)'
+          }
+        },
+        moon: {
+          '0%': {
+            transform: 'translateX(-50%) rotate(0deg)'
+          },
+          '25%': {
+            transform: 'translateX(-50%) rotate(30deg)'
+          },
+          '50%': {
+            transform: 'translateX(-50%) rotate(60deg)'
+          },
+          '75%': {
+            transform: 'translateX(-50%) rotate(90deg)'
+          },
+          '100%': {
+            transform: 'translateX(-50%) rotate(120deg)'
+          },
+        },
+        code: {
+          '0%': {
+            transform: 'translateX(-50%) translateY(0)'
+          },
+          '25%': {
+            transform: 'translateX(-50%) translateY(-48px)'
+          },
+          '50%': {
+            transform: 'translateX(-50%) translateY(-128px)'
+          },
+          '75%': {
+            transform: 'translateX(-50%) translateY(-256px)'
+          },
+          '100%': {
+            transform: 'translateX(-50%) translateY(-312px)'
+          }
+        },
+        codeLoop: {
+          '0%': {
+            transform: 'translateX(-50%) translateY(-128px)'
+          },
+          '25%': {
+            transform: 'translateX(-50%) translateY(-200px)'
+          },
+          '50%': {
+            transform: 'translateX(-50%) translateY(-326px)'
+          },
+          '75%': {
+            transform: 'translateX(-50%) translateY(-510px)'
+          },
+          '100%': {
+            transform: 'translateX(-50%) translateY(-712px)'
+          }
+        },
+
+        // Writings Card
+        hand: {
+          '0%': {
+            transform: 'translateX(0) translateY(0)'
+          },
+          '11%': {
+            transform: 'translateX(90px) translateY(-30px) rotate(-10deg)'
+          },
+          '22%': {
+            transform: 'translateX(200px) translateY(20px) rotate(10deg)'
+          },
+          '33%': {
+            transform: 'translateX(300px) translateY(0) rotate(0deg)'
+          },
+          '55%': {
+            transform: 'translateX(0px) translateY(60px) rotate(0deg)'
+          },
+          '66%': {
+            transform: 'translateX(205px) translateY(60px) rotate(0deg)'
+          },
+          '75%': {
+            transform: 'translateX(0px) translateY(115px) rotate(0deg)'
+          },
+          '83%': {
+            transform: 'translateX(160px) translateY(135px) rotate(10deg)'
+          },
+          '92%': {
+            transform: 'translateX(280px) translateY(115px) rotate(0deg)'
+          },
+          '100%': {
+            transform: 'translateX(50%) translateY(165px)'
+          }
+        },
+        firstSentence: {
+          '0%': {
+            transform: 'translateX(0)'
+          },
+          '33%': {
+            transform: 'translateX(90px) translateY(0px)'
+          },
+          '66%': {
+            transform: 'translateX(200px) translateY(0px)'
+          },
+          '100%': {
+            transform: 'translateX(300px) translateY(0)'
+          },
+        },
+        secondSentence: {
+          '0%': {
+            transform: 'translateX(0)'
+          },
+          '100%': {
+            transform: 'translateX(215px) translateY(0)'
+          },
+        },
+        thirdSentence: {
+          '0%': {
+            transform: 'translateX(0)'
+          },
+          '50%': {
+            transform: 'translateX(160px)'
+          },
+          '100%': {
+            transform: 'translateX(300px) translateY(0)'
+          },
+        },
+      },
+      animation: {
+        'rocket': 'rocket 2s steps(2, end) infinite',
+        'moon': 'moon 2s steps(1, end) infinite',
+        'code': 'code 2s steps(1, end), codeLoop 2s steps(1, end) infinite 2s',
+
+        'hand': 'hand 6s ease-out forwards',
+        'first-sentence': 'firstSentence 2s ease-out forwards',
+        'second-sentence': 'secondSentence 700ms ease-out forwards',
+        'third-sentence': 'thirdSentence 1000ms ease-out forwards',
       }
     },
   },

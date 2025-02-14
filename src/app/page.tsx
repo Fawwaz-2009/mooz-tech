@@ -5,11 +5,11 @@ import { Mail, Linkedin, MessageCircle, BookOpenText, MoveUpRight, CodeXml, Libr
 
 const Navigation = () => (
   <nav className="mx-auto flex max-w-[1368px] items-center justify-between px-4 pt-12">    
-    <Link href="/" className='p-[5px] bg-[#FFFFFF] bg-opacity-80 outline outline-1 outline-[#E5E5E5] rounded-full'>
+    <Link href="/" className='p-[5px] bg-[#FFFFFF] bg-opacity-80 outline outline-1 outline-[#E5E5E5] rounded-full transition hover:bg-opacity-100'>
       <img src="/mooz-face.png" alt="Logo" className="h-10 w-auto rounded-full" />
     </Link>
 
-    <Button asChild className='shadow-md'>
+    <Button asChild className='shadow-sm'>
       <Link href="https://cal.com/fawwaz/dev">Book a call</Link>
     </Button>
   </nav>
@@ -281,8 +281,9 @@ const ContactCard2 = () => (
           <p className="text-small-1 text-gray-400">Email</p>
 
           <Link href="/" legacyBehavior>
-            <a className="p-[5px] bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0]">
-              <MoveUpRight className='w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117]'/>
+            <a className="group overflow-hidden flex items-center justify-center p-[5px] bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0] transition transform duration-200 ease-in-out hover:bg-opacity-100 hover:outline-[3px]">
+              <MoveUpRight className='w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117] transform transition duration:800 ease-in-out group-hover:translate-x-4 group-hover:-translate-y-4'/>
+              <MoveUpRight className='absolute w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117] transform transition duration:800 ease-in-out -translate-x-8 translate-y-8 group-hover:translate-x-0 group-hover:-translate-y-0'/>
             </a>
           </Link>
 
@@ -297,8 +298,9 @@ const ContactCard2 = () => (
           <p className="text-small-1 text-gray-400">LinkedIn</p>
 
           <Link href="/" legacyBehavior>
-            <a className="p-[5px] bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0]">
-              <MoveUpRight className='w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117]'/>
+            <a className="group overflow-hidden flex items-center justify-center p-[5px] bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0] transition transform duration-200 ease-in-out hover:bg-opacity-100 hover:outline-[3px]">
+              <MoveUpRight className='w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117] transform transition duration:800 ease-in-out group-hover:translate-x-4 group-hover:-translate-y-4'/>
+              <MoveUpRight className='absolute w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117] transform transition duration:800 ease-in-out -translate-x-8 translate-y-8 group-hover:translate-x-0 group-hover:-translate-y-0'/>
             </a>
           </Link>
         </div>
@@ -312,8 +314,9 @@ const ContactCard2 = () => (
           <p className="text-small-1 text-gray-400">Cal.com</p>
 
           <Link href="/" legacyBehavior>
-            <a className="p-[5px] bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0]">
-              <MoveUpRight className='w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117]'/>
+            <a className="group overflow-hidden flex items-center justify-center p-[5px] bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0] transition transform duration-200 ease-in-out hover:bg-opacity-100 hover:outline-[3px]">
+              <MoveUpRight className='w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117] transform transition duration:800 ease-in-out group-hover:translate-x-4 group-hover:-translate-y-4'/>
+              <MoveUpRight className='absolute w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117] transform transition duration:800 ease-in-out -translate-x-8 translate-y-8 group-hover:translate-x-0 group-hover:-translate-y-0'/>
             </a>
           </Link>
         </div>
@@ -327,8 +330,9 @@ const ContactCard2 = () => (
           <p className="text-small-1 text-gray-400">WhatsApp</p>
 
           <Link href="/" legacyBehavior>
-            <a className="p-[5px] bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0]">
-              <MoveUpRight className='w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117]'/>
+            <a className="group overflow-hidden flex items-center justify-center p-[5px] bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0] transition transform duration-200 ease-in-out hover:bg-opacity-100 hover:outline-[3px]">
+              <MoveUpRight className='w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117] transform transition duration:800 ease-in-out group-hover:translate-x-4 group-hover:-translate-y-4'/>
+              <MoveUpRight className='absolute w-4 h-4 stroke-2 opacity-40 stroke-[#0D1117] transform transition duration:800 ease-in-out -translate-x-8 translate-y-8 group-hover:translate-x-0 group-hover:-translate-y-0'/>
             </a>
           </Link>
         </div>
@@ -339,11 +343,11 @@ const ContactCard2 = () => (
 )
 
 const WritingsCard2 = () => (
-  <div className="flex flex-col h-full outline outline-1 outline-[#DEDEE0] rounded-big overflow-clip">
+  <div className="group flex flex-col h-full outline outline-1 outline-[#DEDEE0] rounded-big overflow-clip">
     {/* Header */}
     <div className="flex flex-row gap-2 w-full items-center px-8 py-[27px] bg-[#E9F5FF] border-b-[2px] border-[#D2DDE5]">
-      <BookOpenText className='h-6 w-6 stroke-dark-blue stroke-[1.5px]' />
-      <p className='text-small-3 font-sans font-semibold uppercase text-dark-blue'>Journal on Building Product</p>
+      <BookOpenText className='h-6 w-6 text-dark-blue stroke-[1.5px]' />
+      <p className='text-small-3 font-sans font-semibold uppercase text-dark-blue'>Journal on Building Products</p>
     </div>
 
     {/* Content */}
@@ -357,13 +361,35 @@ const WritingsCard2 = () => (
         <hr className="w-full border-2" />
       </div>
 
+      {/* Text */}
+      <div className="absolute flex flex-col top-3 left-6 gap-1">
+        {/* First-sentence */}
+        <div className='flex p-[10px] relative'>
+          <p className='text-dark-blue font-caveat text-[20px]'>You'll find collection of my journey through</p>
+          <div className="absolute w-full h-6 bg-[#F7F7F9] group-hover:animate-first-sentence"></div>
+        </div>
+
+        {/* Second sentence */}
+        <div className="flex p-[10px] relative">
+          <p className='text-dark-blue font-caveat text-[20px]'>the process of building product</p>
+          <div className="absolute w-full h-6 bg-[#F7F7F9] group-hover:animate-second-sentence" style={{ animationDelay: "3300ms" }} ></div>
+        </div>
+
+        {/* Third-sentence */}
+        <div className='flex p-[10px] relative'>
+          <p className='text-dark-blue font-caveat text-[20px]'>Read anything that catches your interest.</p>
+          <div className="absolute w-full h-6 bg-[#F7F7F9] group-hover:animate-third-sentence" style={{ animationDelay: "4500ms" }}></div>
+        </div>
+      </div>
+
       {/* Image */}
-      <img src="/writings/hand.png" alt="Hand" className="absolute top-3 left-9" />
+      <img src="/writings/hand.png" alt="Hand" className="absolute top-3 left-6 group-hover:animate-hand" />
 
       {/* Icon */}
       <Link href="/" legacyBehavior>
-        <a className="absolute bottom-4 left-4 p-2 bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0]">
-          <MoveUpRight className='w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117]'/>
+        <a className="group/link absolute overflow-hidden bottom-4 left-4 p-2 flex items-center justify-center bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0] z-20 transition transform duration-200 ease-in-out group-hover/link:bg-opacity-100 hover:outline-[3px]">
+          <MoveUpRight className='w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117] transform transition duration:800 ease-in-out group-hover/link:translate-x-8 group-hover/link:-translate-y-8'/>
+          <MoveUpRight className='absolute w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117] transform transition duration:800 ease-in-out -translate-x-12 translate-y-12 group-hover/link:translate-x-0 group-hover/link:-translate-y-0'/>
         </a>
       </Link>
 
@@ -372,10 +398,10 @@ const WritingsCard2 = () => (
 )
 
 const Projects = () => (
-  <div className="flex flex-col h-full outline outline-1 outline-[#DEDEE0] rounded-big overflow-clip">
+  <div className="group flex flex-col h-full outline outline-1 outline-[#DEDEE0] rounded-big overflow-clip">
     {/* Header */}
     <div className="flex flex-row gap-2 w-full items-center px-8 py-[27px] bg-[#FEF0F1] border-b-[2px] border-[#F1E4E5] z-20">
-      <CodeXml className='h-6 w-6 stroke-dark-red stroke-[1.5px]' />
+      <CodeXml className='h-6 w-6 text-dark-red stroke-[1.5px]' />
       <p className='text-small-3 font-sans font-semibold uppercase text-dark-red'>Interactive Projects Collection</p>
     </div>
 
@@ -384,26 +410,30 @@ const Projects = () => (
 
       {/* Icon */}
       <Link href="/" legacyBehavior>
-        <a className="absolute bottom-4 left-4 p-2 bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0] z-20">
-           <MoveUpRight className='w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117]'/>
+        <a className="group/icon absolute overflow-hidden bottom-4 left-4 p-2 flex items-center justify-center bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0] z-20 transition transform duration-200 ease-in-out hover:bg-opacity-100 hover:outline-[3px]">
+          <MoveUpRight className='w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117] transform transition duration:800 ease-in-out group-hover/icon:translate-x-8 group-hover/icon:-translate-y-8'/>
+          <MoveUpRight className='absolute w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117] transform transition duration:800 ease-in-out -translate-x-12 translate-y-12 group-hover/icon:translate-x-0 group-hover/icon:-translate-y-0'/>
         </a>
       </Link>
 
       {/* Image */}
-      <img src="/projects/code-bg.png" alt="Moon" className="absolute top-[74px] max-w-none left-1/2 transform -translate-x-1/2" />
-      <img src="/projects/moon.png" alt="Moon" className="absolute bottom-[-24px] max-w-none left-1/2 transform -translate-x-1/2" />
+      <img src="/projects/code-bg.png" alt="Moon" className="absolute top-[74px] max-w-none left-1/2 transform -translate-x-1/2
+        group-hover:animate-code" />
+      <img src="/projects/moon.png" alt="Moon" className="absolute bottom-[-24px] max-w-none left-1/2 transform -translate-x-1/2
+        group-hover:animate-moon" />
       <img src="/projects/mountain.png" alt="Mountain" className="absolute bottom-0 max-w-none left-1/2 transform -translate-x-1/2" />
-      <img src="/projects/rocket.png" alt="Rocket" className="absolute bottom-[-105px] left-1/2 transform -translate-x-1/2" />
+      <img src="/projects/rocket.png" alt="Rocket" className="absolute bottom-[-105px] left-1/2 transform -translate-x-1/2
+        group-hover:animate-rocket" />
       <img src="/projects/forest.png" alt="Forest" className="absolute bottom-0 max-w-none left-1/2 transform -translate-x-1/2" />
     </div>
   </div>
 )
 
 const BooksCard2 = () => (
-  <div className="flex flex-col h-full bg-[#f7f7f9] outline outline-1 outline-[#DEDEE0] rounded-big overflow-clip">
+  <div className="group flex flex-col h-full bg-[#f7f7f9] outline outline-1 outline-[#DEDEE0] rounded-big overflow-clip">
     {/* Header */}
     <div className="flex flex-row gap-2 w-full items-center px-8 py-[27px]">
-      <LibraryBig className='h-6 w-6 stroke-dark-gray stroke-[1px]' />
+      <LibraryBig className='h-6 w-6 stroke-dark-blue stroke-[1.5px]' />
       <p className='text-small-3 font-sans font-reglar uppercase text-dark-gray'>Recommended Books</p>
     </div>
 
@@ -412,8 +442,9 @@ const BooksCard2 = () => (
 
       {/* Icon */}
       <Link href="/" legacyBehavior>
-        <a className="absolute bottom-4 left-4 p-2 bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0] z-20">
-          <MoveUpRight className='w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117]'/>
+        <a className="group/icon absolute overflow-hidden bottom-4 left-4 p-2 flex items-center justify-center bg-[#ffffff] bg-opacity-50 rounded-full outline outline-2 outline-[#DEDEE0] z-20 transition transform duration-200 ease-in-out hover:bg-opacity-100 hover:outline-[3px]">
+          <MoveUpRight className='w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117] transform transition duration:800 ease-in-out group-hover/icon:translate-x-8 group-hover/icon:-translate-y-8'/>
+          <MoveUpRight className='absolute w-6 h-6 stroke-2 opacity-40 stroke-[#0D1117] transform transition duration:800 ease-in-out -translate-x-12 translate-y-12 group-hover/icon:translate-x-0 group-hover/icon:-translate-y-0'/>
         </a>
       </Link>
 
@@ -421,15 +452,15 @@ const BooksCard2 = () => (
       <img src="/rainbow.png" alt="rainbow" className='absolute w-full opacity-20' />
 
       {/* Books-Image */}
-      <div className="flex flex-row absolute bottom-[-64px] right-[-241px] z-0">
-        <img src="/books-display/book-01.png" alt="Book-1" className='rotate-[-15deg]' />
-        <img src="/books-display/book-02.png" alt="Book-2" className='rotate-[-15deg] -ml-[115px]' />
-        <img src="/books-display/book-03.png" alt="Book-3" className='rotate-[-15deg] -ml-[115px]' />
-        <img src="/books-display/book-04.png" alt="Book-4" className='rotate-[-15deg] -ml-[115px]' />
-        <img src="/books-display/book-05.png" alt="Book-5" className='rotate-[-15deg] -ml-[115px]' />
-        <img src="/books-display/book-06.png" alt="Book-6" className='rotate-[-15deg] -ml-[115px]' />
-        <img src="/books-display/book-07.png" alt="Book-7" className='rotate-[-15deg] -ml-[115px]' />
-        <img src="/books-display/book-08.png" alt="Book-8" className='rotate-[-15deg] -ml-[115px]' />
+      <div className="group/books flex flex-row absolute bottom-[-64px] right-[-241px] z-0 transition-transform duration-300 ease-in-out group-hover:-translate-x-[156px]">
+        <img src="/books-display/book-01.png" alt="Book-1" className='rotate-[-15deg] transition hover:-translate-y-[40px]' />
+        <img src="/books-display/book-02.png" alt="Book-2" className='rotate-[-15deg] -ml-[115px] transition-all ease-in-out group-hover:-ml-[75px] hover:-translate-y-[40px]' />
+        <img src="/books-display/book-03.png" alt="Book-3" className='rotate-[-15deg] -ml-[115px] transition-all ease-in-out group-hover:-ml-[75px] hover:-translate-y-[40px]' />
+        <img src="/books-display/book-04.png" alt="Book-4" className='rotate-[-15deg] -ml-[115px] transition-all ease-in-out group-hover:-ml-[75px] hover:-translate-y-[40px]' />
+        <img src="/books-display/book-05.png" alt="Book-5" className='rotate-[-15deg] -ml-[115px] transition-all ease-in-out group-hover:-ml-[75px] hover:-translate-y-[40px]' />
+        <img src="/books-display/book-06.png" alt="Book-6" className='rotate-[-15deg] -ml-[115px] transition-all ease-in-out group-hover:-ml-[75px] hover:-translate-y-[40px]' />
+        <img src="/books-display/book-07.png" alt="Book-7" className='rotate-[-15deg] -ml-[115px] transition-all ease-in-out group-hover:-ml-[75px] hover:-translate-y-[40px]' />
+        <img src="/books-display/book-08.png" alt="Book-8" className='rotate-[-15deg] -ml-[115px] transition-all ease-in-out group-hover:-ml-[75px] hover:-translate-y-[40px]' />
       </div>
     </div>
   </div>
