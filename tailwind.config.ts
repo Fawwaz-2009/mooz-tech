@@ -68,14 +68,28 @@ const config = {
         caveat: ["Caveat", 'cursive'],
       },
       fontSize: {
+        'big-0': ['36px', {
+          lineHeight: '45px',
+        }],
         'big-1': ['32px', {
           lineHeight: '40px',
         }],
         'big-2': ['28px', {
           lineHeight: '35px',
+          letterSpacing: '-0.4px',
+        }],
+        'big-3': ['24px', {
+          lineHeight: '40px',
+        }],
+        'big-4': ['24px', {
+          lineHeight: '36px',
+        }],
+        'big-5': ['16px', {
+          lineHeight: '16px',
         }],
         'medium-1': ['20px', {
           lineHeight: '30px',
+          letterSpacing: '-0.4px',
         }],
         'medium-2': ['24px', {
           lineHeight: '28px',
@@ -234,14 +248,14 @@ const config = {
         },
       },
       animation: {
-        'rocket': 'rocket 2s steps(2, end) infinite',
+        'rocket': 'rocket 1500ms steps(2, end) infinite',
         'moon': 'moon 2s steps(1, end) infinite',
-        'code': 'code 2s steps(1, end), codeLoop 2s steps(1, end) infinite 2s',
+        'code': 'code 2s steps(2, end), codeLoop 2s steps(2, end) infinite 2s',
 
-        'hand': 'hand 6s ease-out forwards',
-        'first-sentence': 'firstSentence 2s ease-out forwards',
-        'second-sentence': 'secondSentence 700ms ease-out forwards',
-        'third-sentence': 'thirdSentence 1000ms ease-out forwards',
+        'hand': 'hand 3500ms ease-out forwards',
+        'first-sentence': 'firstSentence 1100ms ease-out forwards',
+        'second-sentence': 'secondSentence 360ms ease-out forwards',
+        'third-sentence': 'thirdSentence 700ms ease-out forwards',
       }
     },
   },
